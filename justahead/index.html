@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JustAhead — Never miss your stop again</title>
+  <meta name="description" content="Location-based alarms for transit riders. Set an alarm on the map, lock your phone, and trust it. JustAhead wakes you up the moment you arrive.">
+  <meta name="theme-color" content="#0A84FF">
+
+  <meta property="og:title" content="JustAhead — Never miss your stop again">
+  <meta property="og:description" content="Location-based alarms that wake you up when you arrive at your transit stop.">
+  <meta property="og:image" content="assets/icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://qwarkstar.github.io/justahead/">
+
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="apple-touch-icon" href="assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Gradient blur backdrop -->
+  <div class="bg-glow"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- Nav -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="./" class="brand" aria-label="JustAhead">
+        <img src="assets/icon.png" alt="" class="brand-icon">
+        <span>JustAhead</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#faq">FAQ</a>
+        <a href="support.html">Support</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="badge fade-in">
+        <span class="badge-dot"></span>
+        <span>Coming soon to the App Store</span>
+      </div>
+
+      <h1 class="hero-title fade-in stagger-1">
+        Never miss your stop<br><span class="gradient">again.</span>
+      </h1>
+
+      <p class="hero-sub fade-in stagger-2">
+        Drop a pin. Lock your phone. Fall asleep.<br>
+        JustAhead watches your GPS and wakes you up the moment you arrive.
+      </p>
+
+      <div class="hero-cta fade-in stagger-3">
+        <a class="btn btn-primary" href="#download">
+          <svg width="18" height="18" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true">
+            <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+          </svg>
+          Download on iOS
+        </a>
+        <a class="btn btn-ghost" href="#how">See how it works</a>
+      </div>
+
+      <div class="hero-stats fade-in stagger-4">
+        <div class="stat"><strong>100%</strong><span>On-device</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>Zero</strong><span>Tracking</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>Unlimited</strong><span>Alarms</span></div>
+      </div>
+    </div>
+
+    <!-- Phone mockup -->
+    <div class="phone-wrap fade-in stagger-5">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="mock-status">
+            <span>9:41</span>
+            <div class="mock-status-right">
+              <span class="mock-bars"></span>
+              <span class="mock-wifi"></span>
+              <span class="mock-battery"></span>
+            </div>
+          </div>
+          <div class="mock-header">
+            <div class="mock-bell">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A84FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            </div>
+            <span class="mock-brand">JustAhead</span>
+          </div>
+          <h2 class="mock-title">Your Alarms</h2>
+          <div class="mock-card mock-card-active">
+            <div class="mock-dot mock-dot-active"></div>
+            <div class="mock-card-text">
+              <div class="mock-card-title">Central Station</div>
+              <div class="mock-card-meta">
+                <span class="mock-chip">TRANSIT</span>
+                <span class="mock-dist">1.4 km away</span>
+              </div>
+            </div>
+            <div class="mock-switch mock-switch-on"><div class="mock-thumb"></div></div>
+          </div>
+          <div class="mock-card">
+            <div class="mock-dot"></div>
+            <div class="mock-card-text">
+              <div class="mock-card-title">Aventura Mall</div>
+              <div class="mock-card-meta">
+                <span class="mock-chip">PIN 300 m</span>
+              </div>
+            </div>
+            <div class="mock-switch"><div class="mock-thumb"></div></div>
+          </div>
+          <div class="mock-card">
+            <div class="mock-dot"></div>
+            <div class="mock-card-text">
+              <div class="mock-card-title">Home</div>
+              <div class="mock-card-meta">
+                <span class="mock-chip">PIN 500 m</span>
+              </div>
+            </div>
+            <div class="mock-switch"><div class="mock-thumb"></div></div>
+          </div>
+          <div class="mock-fab"></div>
+        </div>
+        <div class="phone-reflection"></div>
+      </div>
+      <div class="phone-shadow"></div>
+    </div>
+  </header>
+
+  <!-- Social proof / motto -->
+  <section class="section motto">
+    <div class="container">
+      <p class="motto-text">
+        Built for the commuter who just needs <span class="gradient">five more minutes</span> of sleep.
+      </p>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="section section-dark">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">How it works</span>
+        <h2>Four taps to peace of mind.</h2>
+        <p>Nothing to configure. Nothing to learn. Open, tap, sleep.</p>
+      </div>
+
+      <div class="steps-grid">
+        <article class="step reveal">
+          <div class="step-num">01</div>
+          <div class="step-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3>Drop a pin or search</h3>
+          <p>Tap anywhere on the map. Search for an address, airport, mall, or real transit stop. "Aventura Mall", "FLL", "Richmond Station" — it all just works.</p>
+        </article>
+
+        <article class="step reveal">
+          <div class="step-num">02</div>
+          <div class="step-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+          </div>
+          <h3>Set your radius</h3>
+          <p>Slide to choose how close you need to be. 100 metres for a tight stop, up to 3 km for a fast train. The map shows you exactly.</p>
+        </article>
+
+        <article class="step reveal">
+          <div class="step-num">03</div>
+          <div class="step-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h3>Lock your phone</h3>
+          <p>Put on music, close your eyes, stop watching the window. JustAhead runs entirely in the background and doesn't need you to do anything.</p>
+        </article>
+
+        <article class="step reveal">
+          <div class="step-num">04</div>
+          <div class="step-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          </div>
+          <h3>Wake up on time</h3>
+          <p>When you enter the alarm zone, JustAhead sounds a loud alarm that plays even when your phone is locked and the app is closed.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features grid -->
+  <section id="features" class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Features</span>
+        <h2>Small app. <span class="gradient">Big trust.</span></h2>
+        <p>Every feature earns its place. No clutter, no gimmicks.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature reveal">
+          <div class="feature-icon feature-icon-blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          </div>
+          <h3>Real transit stops</h3>
+          <p>Tap the map and JustAhead finds actual bus stops, train stations, metros and trams nearby, ranked by importance.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature-icon feature-icon-green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
+          <h3>Loud enough to wake you</h3>
+          <p>Background audio with lock screen controls. Not a tiny notification sound — a real alarm that keeps going.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature-icon feature-icon-gold">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3>Apple Maps directions</h3>
+          <p>One tap to open turn-by-turn transit directions. JustAhead sets the alarm, Apple Maps guides the journey.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature-icon feature-icon-purple">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Commute profiles</h3>
+          <p>Save groups of alarms like "Morning to Work" or "Evening Home" and activate them all in a single tap.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature-icon feature-icon-blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>Works offline</h3>
+          <p>Once your alarm is set, everything runs on GPS. No data connection needed on the actual journey.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature-icon feature-icon-green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Zero tracking</h3>
+          <p>No account. No cloud. No analytics SDKs. Your alarms live on your device and nowhere else. Ever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust / values -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-text reveal">
+          <span class="eyebrow">Privacy</span>
+          <h2>Your trips are nobody's business.</h2>
+          <p>JustAhead runs entirely on your iPhone. No servers, no accounts, no dashboards for strangers to query. The only network calls the app makes are to OpenStreetMap for place names — and even those include zero personal identifiers.</p>
+          <p>The data we don't collect is the data we can't lose. That's by design.</p>
+          <a class="inline-link" href="privacy.html">Read the privacy policy →</a>
+        </div>
+        <div class="trust-check reveal">
+          <ul>
+            <li><span class="check">✓</span>No user accounts</li>
+            <li><span class="check">✓</span>No location history sent to servers</li>
+            <li><span class="check">✓</span>No analytics SDKs</li>
+            <li><span class="check">✓</span>No trackers or fingerprinting</li>
+            <li><span class="check">✓</span>Data stays on your device</li>
+            <li><span class="check">✓</span>Uninstall = gone forever</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it's for -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Built for</span>
+        <h2>Anyone who's ever <span class="gradient">missed a stop</span>.</h2>
+      </div>
+
+      <div class="audience-grid">
+        <div class="audience reveal">
+          <div class="audience-emoji" aria-hidden="true">🚇</div>
+          <h3>Daily commuters</h3>
+          <p>Fall asleep on the subway, wake up at the right station. Every time.</p>
+        </div>
+        <div class="audience reveal">
+          <div class="audience-emoji" aria-hidden="true">✈️</div>
+          <h3>Travelers</h3>
+          <p>Never worry about missing your stop in a city you've never been to.</p>
+        </div>
+        <div class="audience reveal">
+          <div class="audience-emoji" aria-hidden="true">🚌</div>
+          <h3>Night bus riders</h3>
+          <p>Red-eye routes, overnight coaches, last-train-home commutes. Covered.</p>
+        </div>
+        <div class="audience reveal">
+          <div class="audience-emoji" aria-hidden="true">🎓</div>
+          <h3>Students</h3>
+          <p>Read for class, listen to lectures, catch up on sleep. The app has you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section section-dark">
+    <div class="container container-narrow">
+      <div class="section-head reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2>Questions, answered.</h2>
+      </div>
+
+      <div class="faq">
+        <details class="faq-item reveal">
+          <summary>
+            <span>Does the alarm work when my phone is locked?</span>
+            <span class="faq-plus"></span>
+          </summary>
+          <div class="faq-body">
+            Yes. JustAhead uses iOS background audio and geofencing, so the alarm plays even when your phone is locked, the screen is off, and the app is fully closed.
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Does it work on silent mode?</span>
+            <span class="faq-plus"></span>
+          </summary>
+          <div class="faq-body">
+            The alarm plays through the background audio system, which bypasses the silent switch on most devices — as long as your volume is turned up. For the most reliable wake-up, keep the ringer volume high before starting your trip.
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Why does it need "Always" location?</span>
+            <span class="faq-plus"></span>
+          </summary>
+          <div class="faq-body">
+            Background location is required so iOS can wake the app and fire the alarm when you enter a geofence zone — even if the app is closed. It's the only way third-party apps can legally do this. Your location never leaves your device.
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>How accurate are the alarms?</span>
+            <span class="faq-plus"></span>
+          </summary>
+          <div class="faq-body">
+            Very accurate above 200 metres. Below that, iOS geofence reliability varies depending on GPS signal. For best results on fast trains or in dense cities, use at least a 300m radius. The app warns you if you set it too small.
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Is my city supported?</span>
+            <span class="faq-plus"></span>
+          </summary>
+          <div class="faq-body">
+            PIN mode works absolutely anywhere on Earth. Transit mode uses OpenStreetMap data, which has excellent coverage in most major cities worldwide and is improving constantly. If your local transit isn't mapped yet, just use PIN mode instead.
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>How much does it cost?</span>
+            <span class="faq-plus"></span>
+          </summary>
+          <div class="faq-body">
+            JustAhead is free to download and use. It's supported by unobtrusive banner ads. An optional $1.99 one-time purchase removes all ads forever if you'd prefer the cleanest experience.
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Does it drain my battery?</span>
+            <span class="faq-plus"></span>
+          </summary>
+          <div class="faq-body">
+            JustAhead uses iOS native geofencing, which is highly battery-efficient — the OS only wakes the app when you cross a boundary. On a typical commute, the impact on battery life is negligible.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="download" class="section cta-section">
+    <div class="container">
+      <div class="cta reveal">
+        <img src="assets/icon.png" alt="" class="cta-icon">
+        <h2>Ready to sleep on the train?</h2>
+        <p>Download JustAhead and set your first alarm in under 30 seconds.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary btn-large" href="#">
+            <svg width="20" height="20" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true">
+              <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+            </svg>
+            Download on the App Store
+          </a>
+        </div>
+        <p class="cta-footnote">Free · iPhone · iOS 16+</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-inner">
+            <img src="assets/icon.png" alt="">
+            <span>JustAhead</span>
+          </div>
+          <p>The travel alarm for commuters and explorers.</p>
+        </div>
+        <div class="footer-col">
+          <h4>App</h4>
+          <a href="#how">How it works</a>
+          <a href="#features">Features</a>
+          <a href="#faq">FAQ</a>
+          <a href="#download">Download</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="privacy.html">Privacy</a>
+          <a href="support.html">Support</a>
+          <a href="mailto:julian.rzezak@gmail.com">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Julian Rzezak · All rights reserved</p>
+        <p class="footer-made">Made with care in Miami ☀️</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
