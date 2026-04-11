@@ -1,11 +1,21 @@
 // ──────────────────────────────────────────
-// JustAhead — site interactions
+// JustAhead site interactions
 // ──────────────────────────────────────────
 
 (function () {
   'use strict';
 
-  // ── Nav — glass effect on scroll ─────────
+  // Mark html as JS-enabled so CSS hides reveal elements (with fallback if JS fails)
+  document.documentElement.classList.add('js');
+
+  // Safety net: ensure reveal animations fire after 3 seconds no matter what
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.visible)').forEach((el) => {
+      el.classList.add('visible');
+    });
+  }, 3000);
+
+  // ── Nav: glass effect on scroll ──────────
   const nav = document.getElementById('nav');
   const SCROLL_THRESHOLD = 24;
 
@@ -70,7 +80,7 @@
 
     revealElements.forEach((el) => revealObserver.observe(el));
   } else {
-    // Fallback — show everything immediately
+    // Fallback: show everything immediately
     revealElements.forEach((el) => el.classList.add('visible'));
   }
 
