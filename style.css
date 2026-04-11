@@ -568,6 +568,46 @@ a {
   border-radius: 99px;
 }
 
+/* Green variant for TrashScan featured card */
+.featured-card-green::before {
+  background: radial-gradient(circle, rgba(48, 209, 88, 0.12), transparent 60%) !important;
+}
+
+.featured-card-green:hover {
+  border-color: rgba(48, 209, 88, 0.3) !important;
+}
+
+.featured-chip-green {
+  color: var(--green) !important;
+  background: rgba(48, 209, 88, 0.1) !important;
+  border-color: rgba(48, 209, 88, 0.25) !important;
+}
+
+.featured-status-alt {
+  color: var(--gold) !important;
+}
+
+.featured-cta-green {
+  color: var(--green) !important;
+}
+
+.case-visual-mini {
+  width: 110px;
+  height: 110px;
+  border-radius: 26px;
+  background: linear-gradient(145deg, rgba(48, 209, 88, 0.18), rgba(48, 209, 88, 0.04));
+  border: 1px solid rgba(48, 209, 88, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green);
+  box-shadow: 0 16px 44px rgba(48, 209, 88, 0.15);
+}
+
+.featured-tags-green span {
+  color: var(--text-dim);
+}
+
 /* ── Case study (TrashScan) ──────────────── */
 .case-study {
   margin-top: 32px;
@@ -1089,19 +1129,58 @@ a {
 
 .cert-skills {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
-.cert-skills span {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-dim);
-  padding: 5px 10px;
-  background: var(--bg-3);
-  border: 1px solid var(--border);
-  border-radius: 99px;
+.cert-skills-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  flex-shrink: 0;
+}
+
+.cert-skill-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: center;
+}
+
+.cert-skill-dots span {
+  position: relative;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  padding-left: 14px;
+  line-height: 1.4;
+}
+
+.cert-skill-dots span::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 6px rgba(10, 132, 255, 0.5);
+}
+
+.cert-skill-dots span + span::before {
+  background: var(--green);
+  box-shadow: 0 0 6px rgba(48, 209, 88, 0.5);
+}
+
+.cert-skill-dots span + span + span::before {
+  background: var(--gold);
+  box-shadow: 0 0 6px rgba(245, 200, 122, 0.5);
 }
 
 .cert-meta {
