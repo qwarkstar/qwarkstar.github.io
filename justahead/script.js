@@ -5,16 +5,6 @@
 (function () {
   'use strict';
 
-  // Mark html as JS-enabled so CSS hides reveal elements (with fallback if JS fails)
-  document.documentElement.classList.add('js');
-
-  // Safety net: ensure reveal animations fire after 3 seconds no matter what
-  setTimeout(() => {
-    document.querySelectorAll('.reveal:not(.visible)').forEach((el) => {
-      el.classList.add('visible');
-    });
-  }, 3000);
-
   // ── Nav: glass effect on scroll ──────────
   const nav = document.getElementById('nav');
   const SCROLL_THRESHOLD = 24;
@@ -47,41 +37,6 @@
         navLinks.classList.remove('open');
       });
     });
-  }
-
-  // ── Intersection Observer for reveal animations ──
-  const revealElements = document.querySelectorAll('.reveal');
-
-  if ('IntersectionObserver' in window && revealElements.length) {
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Small delay based on element index for stagger effect
-            const siblings = Array.from(
-              entry.target.parentElement?.querySelectorAll('.reveal') || []
-            );
-            const indexInParent = siblings.indexOf(entry.target);
-            const delay = Math.min(indexInParent * 80, 400);
-
-            setTimeout(() => {
-              entry.target.classList.add('visible');
-            }, delay);
-
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.12,
-        rootMargin: '0px 0px -60px 0px',
-      }
-    );
-
-    revealElements.forEach((el) => revealObserver.observe(el));
-  } else {
-    // Fallback: show everything immediately
-    revealElements.forEach((el) => el.classList.add('visible'));
   }
 
   // ── Smooth scroll for same-page anchor links ──
