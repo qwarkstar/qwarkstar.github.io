@@ -9,7 +9,7 @@
 
   <meta property="og:title" content="TrashScan · Smart metal detection for restaurant waste">
   <meta property="og:description" content="Prototype smart trash can. Detect, retrieve, sanitize.">
-  <meta property="og:image" content="assets/prototype.png">
+  <meta property="og:image" content="../justahead/assets/icon.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://qwarkstar.github.io/trashscan/">
 
@@ -33,7 +33,6 @@
         <a href="#overview">Overview</a>
         <a href="#system">System</a>
         <a href="#firmware">Firmware</a>
-        <a href="#gallery">Gallery</a>
         <a href="#team">Team</a>
         <a href="assets/trashscan-design-report.pdf" target="_blank" rel="noopener">Report</a>
         <a href="../" class="nav-back">← Portfolio</a>
@@ -81,9 +80,61 @@
       </div>
     </div>
 
-    <div class="hero-image fade-in stagger-5">
-      <img src="assets/prototype.png" alt="TrashScan final prototype showing the 3D-printed enclosure, stepper motor tower, and collection bucket." loading="eager">
-      <div class="hero-image-caption">Final prototype with 3D-printed case and collection area</div>
+    <div class="hero-diagram fade-in stagger-5">
+      <div class="diagram-card">
+        <div class="diagram-node diagram-node-1">
+          <div class="diagram-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+          </div>
+          <div class="diagram-text">
+            <strong>Induction loop</strong>
+            <span>0.9 mm enameled copper</span>
+          </div>
+        </div>
+
+        <div class="diagram-arrow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+        </div>
+
+        <div class="diagram-node diagram-node-2">
+          <div class="diagram-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
+          </div>
+          <div class="diagram-text">
+            <strong>Arduino firmware</strong>
+            <span>5 reads over 500 ms</span>
+          </div>
+        </div>
+
+        <div class="diagram-arrow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+        </div>
+
+        <div class="diagram-node diagram-node-3">
+          <div class="diagram-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/></svg>
+          </div>
+          <div class="diagram-text">
+            <strong>Pulley retrieval</strong>
+            <span>Block &amp; tackle stepper</span>
+          </div>
+        </div>
+
+        <div class="diagram-arrow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+        </div>
+
+        <div class="diagram-node diagram-node-4">
+          <div class="diagram-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </div>
+          <div class="diagram-text">
+            <strong>UV sanitization</strong>
+            <span>Disinfect the recovered item</span>
+          </div>
+        </div>
+      </div>
+      <p class="diagram-caption">The TrashScan pipeline from detection to sanitization.</p>
     </div>
   </header>
 
@@ -261,24 +312,13 @@
     </div>
   </section>
 
-  <!-- Gallery -->
-  <section id="gallery" class="section section-dark">
+  <!-- Report highlight -->
+  <section id="report" class="section section-dark">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">Gallery</span>
-        <h2>The build.</h2>
-        <p>Photos from prototype assembly and testing.</p>
-      </div>
-
-      <div class="gallery">
-        <figure class="gallery-item gallery-large reveal">
-          <img src="assets/prototype.png" alt="Full TrashScan prototype showing the red 3D-printed case, stepper motor tower with copper induction loop, and white collection bucket." loading="lazy">
-          <figcaption>Full prototype with 3D-printed red case, stepper tower, and collection bucket.</figcaption>
-        </figure>
-        <figure class="gallery-item reveal">
-          <img src="assets/pulley.png" alt="Close-up of the block-and-tackle pulley system with yellow guide strings, a magnet hook retrieving a small metal item." loading="lazy">
-          <figcaption>Block-and-tackle pulley system with magnet hook catching a retrieved item.</figcaption>
-        </figure>
+        <span class="eyebrow">Documentation</span>
+        <h2>Everything, in one report.</h2>
+        <p>The full 17-page design document covering schematics, calculations, iterative testing notes, failure mode analysis, and references.</p>
       </div>
 
       <div class="report-cta reveal">
@@ -286,8 +326,8 @@
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         </div>
         <div class="report-cta-text">
-          <h3>Full design report</h3>
-          <p>Schematics, calculations, iterative testing notes, failure mode analysis, and references. 17 pages.</p>
+          <h3>TrashScan Design Report</h3>
+          <p>17 pages. Schematics, firmware logic, calculations, test results, failure modes, and references.</p>
         </div>
         <a class="btn btn-primary" href="assets/trashscan-design-report.pdf" target="_blank" rel="noopener">Open PDF</a>
       </div>
@@ -486,7 +526,7 @@
           <a href="#overview">Overview</a>
           <a href="#system">System</a>
           <a href="#firmware">Firmware</a>
-          <a href="#gallery">Gallery</a>
+          <a href="#report">Report</a>
           <a href="#team">Team</a>
         </div>
         <div class="footer-col">
