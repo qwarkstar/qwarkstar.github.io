@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────
-// JustAhead site interactions
+// R·iving site interactions
 // ──────────────────────────────────────────
 
 (function () {
@@ -142,7 +142,7 @@
   // ── Log a friendly hello ─────────────────
   if (console && console.log) {
     console.log(
-      '%cJustAhead',
+      '%cR·iving',
       'color: #0A84FF; font-size: 28px; font-weight: 800; letter-spacing: -0.03em;'
     );
     console.log(

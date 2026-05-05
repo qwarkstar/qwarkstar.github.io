@@ -1,6 +1,6 @@
 // ──────────────────────────────────────────
 // Julian Rzezak portfolio interactions
-// Shares behavior with JustAhead site
+// Shares behavior with R·iving site
 // ──────────────────────────────────────────
 
 (function () {
