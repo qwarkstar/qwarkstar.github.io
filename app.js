@@ -82,6 +82,68 @@
     sections.forEach((section) => sectionObserver.observe(section));
   }
 
+  // ── Scroll progress bar ──────────────────
+  const progressBar = document.getElementById('scrollProgress');
+  if (progressBar) {
+    const updateProgress = () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+      progressBar.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  // ── Custom cursor (desktop, fine pointer, no reduced-motion) ──
+  const cursorDot = document.getElementById('cursorDot');
+  const cursorRing = document.getElementById('cursorRing');
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (cursorDot && cursorRing && finePointer && !reducedMotion) {
+    let mx = window.innerWidth / 2;
+    let my = window.innerHeight / 2;
+    let rx = mx;
+    let ry = my;
+    let rafId = null;
+
+    const tick = () => {
+      // Dot follows pointer 1:1, ring lags slightly for an analog feel
+      rx += (mx - rx) * 0.18;
+      ry += (my - ry) * 0.18;
+      cursorDot.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
+      cursorRing.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
+      rafId = requestAnimationFrame(tick);
+    };
+
+    document.addEventListener('mousemove', (e) => {
+      mx = e.clientX;
+      my = e.clientY;
+      if (!document.body.classList.contains('cursor-active')) {
+        document.body.classList.add('cursor-active');
+        // Snap ring to dot on first move
+        rx = mx; ry = my;
+      }
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    });
+
+    document.addEventListener('mouseleave', () => {
+      document.body.classList.remove('cursor-active');
+    });
+
+    document.addEventListener('mouseenter', () => {
+      document.body.classList.add('cursor-active');
+    });
+
+    // Hot state on interactive elements
+    const hotSelectors = 'a, button, .featured-card, .project-card, .cert-link, .edu-card, .cert-card, summary, .nav-toggle';
+    document.querySelectorAll(hotSelectors).forEach((el) => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hot'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hot'));
+    });
+  }
+
   // ── Console branding ─────────────────────
   if (console && console.log) {
     console.log(

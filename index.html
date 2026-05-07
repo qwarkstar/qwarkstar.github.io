@@ -14,12 +14,16 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="grid-bg" aria-hidden="true"></div>
   <div class="bg-glow"></div>
   <div class="bg-glow bg-glow-2"></div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
   <!-- Nav -->
   <nav class="nav" id="nav">
@@ -42,53 +46,102 @@
 
   <!-- Hero -->
   <header class="hero">
-    <div class="hero-inner">
-      <div class="badge fade-in">
-        <span class="badge-dot"></span>
-        <span>Available for collaboration</span>
+    <div class="hero-grid">
+      <div class="hero-meta fade-in" aria-hidden="true">
+        <span class="hero-meta-line">N 42°20'24"</span>
+        <span class="hero-meta-line">W 71°05'23"</span>
+        <span class="hero-meta-divider"></span>
+        <span class="hero-meta-line">BOSTON / MIAMI</span>
+        <span class="hero-meta-line">v.2026</span>
       </div>
 
-      <h1 class="hero-title fade-in stagger-1">
-        Hi, I'm <span class="gradient">Julian</span>.
-      </h1>
+      <div class="hero-inner">
+        <div class="badge fade-in">
+          <span class="badge-dot"></span>
+          <span>Available for collaboration</span>
+        </div>
 
-      <p class="hero-sub fade-in stagger-2">
-        Computer Engineering &amp; Computer Science student at Northeastern University.
-        I build iOS apps, embedded systems, and web experiences that feel considered.
-      </p>
+        <h1 class="hero-title fade-in stagger-1">
+          <span class="hero-line">Hi, I'm</span>
+          <span class="hero-line"><span class="gradient" data-text="Julian.">Julian.</span></span>
+        </h1>
 
-      <div class="hero-cta fade-in stagger-3">
-        <a class="btn btn-primary" href="#projects">
-          See my work
-        </a>
-        <a class="btn btn-ghost" href="#contact">
-          Get in touch
-        </a>
+        <p class="hero-sub fade-in stagger-2">
+          Computer Engineering &amp; Computer Science student at Northeastern University.
+          I build iOS apps, embedded systems, and web experiences that feel considered.
+        </p>
+
+        <div class="hero-cta fade-in stagger-3">
+          <a class="btn btn-primary" href="#projects">
+            See my work
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#contact">
+            Get in touch
+          </a>
+        </div>
+
+        <div class="social-row fade-in stagger-4">
+          <a class="social-link" href="https://github.com/qwarkstar" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            <span>GitHub</span>
+          </a>
+          <a class="social-link" href="https://www.linkedin.com/in/julian-rzezak-07508029b" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a class="social-link" href="mailto:julian.rzezak@gmail.com" aria-label="Email">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>Email</span>
+          </a>
+        </div>
       </div>
 
-      <div class="social-row fade-in stagger-4">
-        <a class="social-link" href="https://github.com/qwarkstar" target="_blank" rel="noopener" aria-label="GitHub">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          <span>GitHub</span>
-        </a>
-        <a class="social-link" href="https://www.linkedin.com/in/julian-rzezak-07508029b" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          <span>LinkedIn</span>
-        </a>
-        <a class="social-link" href="mailto:julian.rzezak@gmail.com" aria-label="Email">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <span>Email</span>
-        </a>
+      <div class="hero-scrollcue fade-in" aria-hidden="true">
+        <span>SCROLL</span>
+        <span class="hero-scrollcue-line"></span>
       </div>
     </div>
   </header>
 
+  <!-- Skill marquee -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Swift</span><span class="marquee-dot">●</span>
+      <span>React Native</span><span class="marquee-dot">●</span>
+      <span>TypeScript</span><span class="marquee-dot">●</span>
+      <span>Embedded C</span><span class="marquee-dot">●</span>
+      <span>ARM Cortex</span><span class="marquee-dot">●</span>
+      <span>Expo</span><span class="marquee-dot">●</span>
+      <span>iOS</span><span class="marquee-dot">●</span>
+      <span>Apple Maps</span><span class="marquee-dot">●</span>
+      <span>OpenStreetMap</span><span class="marquee-dot">●</span>
+      <span>Geofencing</span><span class="marquee-dot">●</span>
+      <span>PCB Design</span><span class="marquee-dot">●</span>
+      <span>3D Printing</span><span class="marquee-dot">●</span>
+      <span>Arduino</span><span class="marquee-dot">●</span>
+      <span>Swift</span><span class="marquee-dot">●</span>
+      <span>React Native</span><span class="marquee-dot">●</span>
+      <span>TypeScript</span><span class="marquee-dot">●</span>
+      <span>Embedded C</span><span class="marquee-dot">●</span>
+      <span>ARM Cortex</span><span class="marquee-dot">●</span>
+      <span>Expo</span><span class="marquee-dot">●</span>
+      <span>iOS</span><span class="marquee-dot">●</span>
+      <span>Apple Maps</span><span class="marquee-dot">●</span>
+      <span>OpenStreetMap</span><span class="marquee-dot">●</span>
+      <span>Geofencing</span><span class="marquee-dot">●</span>
+      <span>PCB Design</span><span class="marquee-dot">●</span>
+      <span>3D Printing</span><span class="marquee-dot">●</span>
+      <span>Arduino</span><span class="marquee-dot">●</span>
+    </div>
+  </div>
+
   <!-- About -->
-  <section id="about" class="section">
+  <section id="about" class="section" data-index="01">
     <div class="container container-narrow">
       <div class="section-head reveal">
         <span class="eyebrow">About</span>
-        <h2>A bit about me.</h2>
+        <h2>A bit <span class="italic-accent">about</span> me.</h2>
       </div>
       <div class="about-text reveal">
         <p>I'm a second-year Computer Engineering &amp; Computer Science student at Northeastern University, splitting my time between writing iOS apps, designing embedded systems, and shipping little things that make life a bit calmer.</p>
@@ -99,11 +152,11 @@
   </section>
 
   <!-- Featured projects -->
-  <section id="projects" class="section section-dark">
+  <section id="projects" class="section section-dark" data-index="02">
     <div class="container">
       <div class="section-head reveal">
         <span class="eyebrow">Featured projects</span>
-        <h2>What I'm building.</h2>
+        <h2>What I'm <span class="italic-accent">building</span>.</h2>
         <p>Two projects I've poured real time into. Software on the left, hardware on the right.</p>
       </div>
 
@@ -212,11 +265,11 @@
   </section>
 
   <!-- Education -->
-  <section id="education" class="section">
+  <section id="education" class="section" data-index="03">
     <div class="container container-narrow">
       <div class="section-head reveal">
         <span class="eyebrow">Education</span>
-        <h2>Where I learn.</h2>
+        <h2>Where I <span class="italic-accent">learn</span>.</h2>
       </div>
 
       <article class="edu-card reveal">
@@ -239,11 +292,11 @@
   </section>
 
   <!-- Certifications -->
-  <section class="section section-dark">
+  <section class="section section-dark" data-index="04">
     <div class="container container-narrow">
       <div class="section-head reveal">
         <span class="eyebrow">Licenses &amp; certifications</span>
-        <h2>Always learning.</h2>
+        <h2>Always <span class="italic-accent">learning</span>.</h2>
         <p>Credentials and specialized training I've completed.</p>
       </div>
 
@@ -317,10 +370,13 @@
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="section">
+  <section id="contact" class="section" data-index="05">
     <div class="container container-narrow">
       <div class="contact-card reveal">
-        <h2>Let's build something.</h2>
+        <div class="contact-mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <h2>Let's <span class="italic-accent">build</span> something.</h2>
         <p>I'm always open to new projects, collaborations, and conversations about embedded systems or iOS development.</p>
         <div class="cta-row">
           <a class="btn btn-primary btn-large" href="mailto:julian.rzezak@gmail.com">
@@ -365,7 +421,10 @@
       </div>
       <div class="footer-bottom">
         <p>© 2026 Julian Rzezak · All rights reserved</p>
-        <p class="footer-made">Made with care in Miami ☀️</p>
+        <p class="footer-made">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          Made with care in Miami
+        </p>
       </div>
     </div>
   </footer>

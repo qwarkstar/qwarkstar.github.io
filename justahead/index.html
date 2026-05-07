@@ -17,13 +17,14 @@
   <link rel="apple-touch-icon" href="assets/icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- Gradient blur backdrop -->
   <div class="bg-glow"></div>
   <div class="bg-glow bg-glow-2"></div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <!-- Nav -->
   <nav class="nav" id="nav">
@@ -83,6 +84,12 @@
 
     <!-- Phone mockup -->
     <div class="phone-wrap fade-in stagger-5">
+      <div class="radar" aria-hidden="true">
+        <span class="radar-ring"></span>
+        <span class="radar-ring radar-ring-2"></span>
+        <span class="radar-ring radar-ring-3"></span>
+        <span class="radar-pin"></span>
+      </div>
       <div class="phone">
         <div class="phone-notch"></div>
         <div class="phone-screen">
@@ -149,6 +156,38 @@
     </div>
   </section>
 
+  <!-- Transit marquee -->
+  <div class="route-marquee" aria-hidden="true">
+    <div class="route-marquee-track">
+      <span>MTA</span><span class="route-marquee-dot"></span>
+      <span>BART</span><span class="route-marquee-dot"></span>
+      <span>TFL UNDERGROUND</span><span class="route-marquee-dot"></span>
+      <span>MBTA</span><span class="route-marquee-dot"></span>
+      <span>METRO LA</span><span class="route-marquee-dot"></span>
+      <span>WMATA</span><span class="route-marquee-dot"></span>
+      <span>TOKYO METRO</span><span class="route-marquee-dot"></span>
+      <span>METRO DE MADRID</span><span class="route-marquee-dot"></span>
+      <span>RATP PARIS</span><span class="route-marquee-dot"></span>
+      <span>SEPTA</span><span class="route-marquee-dot"></span>
+      <span>SBB CFF FFS</span><span class="route-marquee-dot"></span>
+      <span>METRO CDMX</span><span class="route-marquee-dot"></span>
+      <span>MTR HONG KONG</span><span class="route-marquee-dot"></span>
+      <span>MTA</span><span class="route-marquee-dot"></span>
+      <span>BART</span><span class="route-marquee-dot"></span>
+      <span>TFL UNDERGROUND</span><span class="route-marquee-dot"></span>
+      <span>MBTA</span><span class="route-marquee-dot"></span>
+      <span>METRO LA</span><span class="route-marquee-dot"></span>
+      <span>WMATA</span><span class="route-marquee-dot"></span>
+      <span>TOKYO METRO</span><span class="route-marquee-dot"></span>
+      <span>METRO DE MADRID</span><span class="route-marquee-dot"></span>
+      <span>RATP PARIS</span><span class="route-marquee-dot"></span>
+      <span>SEPTA</span><span class="route-marquee-dot"></span>
+      <span>SBB CFF FFS</span><span class="route-marquee-dot"></span>
+      <span>METRO CDMX</span><span class="route-marquee-dot"></span>
+      <span>MTR HONG KONG</span><span class="route-marquee-dot"></span>
+    </div>
+  </div>
+
   <!-- How it works -->
   <section id="how" class="section section-dark">
     <div class="container">
@@ -158,7 +197,8 @@
         <p>Nothing to configure. Nothing to learn. Open, tap, sleep.</p>
       </div>
 
-      <div class="steps-grid">
+      <div class="steps-grid steps-line">
+        <span class="steps-line-track" aria-hidden="true"></span>
         <article class="step reveal">
           <div class="step-num">01</div>
           <div class="step-icon">
@@ -294,22 +334,30 @@
 
       <div class="audience-grid">
         <div class="audience reveal">
-          <div class="audience-emoji" aria-hidden="true">🚇</div>
+          <div class="audience-icon audience-icon-blue" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M8 19l-2 3"/><path d="M16 19l2 3"/><circle cx="8.5" cy="15" r=".75" fill="currentColor"/><circle cx="15.5" cy="15" r=".75" fill="currentColor"/></svg>
+          </div>
           <h3>Daily commuters</h3>
           <p>Fall asleep on the subway, wake up at the right station. Every time.</p>
         </div>
         <div class="audience reveal">
-          <div class="audience-emoji" aria-hidden="true">✈️</div>
+          <div class="audience-icon audience-icon-gold" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+          </div>
           <h3>Travelers</h3>
           <p>Never worry about missing your stop in a city you've never been to.</p>
         </div>
         <div class="audience reveal">
-          <div class="audience-emoji" aria-hidden="true">🚌</div>
+          <div class="audience-icon audience-icon-green" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6v6"/><path d="M16 6v6"/><path d="M2 12h19.6"/><path d="M18 18h.01"/><path d="M6 18h.01"/><path d="M19.6 18a2.5 2.5 0 0 1-2.5 2.5H7a2.5 2.5 0 0 1-2.5-2.5V6a2.5 2.5 0 0 1 2.5-2.5h10a2.5 2.5 0 0 1 2.6 2.5z"/><path d="M3 18 1.7 19.3"/><path d="M21 18l1.3 1.3"/></svg>
+          </div>
           <h3>Night bus riders</h3>
           <p>Red-eye routes, overnight coaches, last-train-home commutes. Covered.</p>
         </div>
         <div class="audience reveal">
-          <div class="audience-emoji" aria-hidden="true">🎓</div>
+          <div class="audience-icon audience-icon-purple" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6"/><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
           <h3>Students</h3>
           <p>Read for class, listen to lectures, catch up on sleep. The app has you.</p>
         </div>
@@ -446,7 +494,10 @@
       </div>
       <div class="footer-bottom">
         <p>© 2026 Julian Rzezak · All rights reserved</p>
-        <p class="footer-made">Made with care in Miami ☀️</p>
+        <p class="footer-made">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          Made with care in Miami
+        </p>
       </div>
     </div>
   </footer>

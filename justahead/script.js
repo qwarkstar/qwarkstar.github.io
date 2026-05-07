@@ -139,6 +139,19 @@
     sections.forEach((section) => sectionObserver.observe(section));
   }
 
+  // ── Scroll progress bar ──────────────────
+  const progressBar = document.getElementById('scrollProgress');
+  if (progressBar) {
+    const updateProgress = () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+      progressBar.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress, { passive: true });
+    updateProgress();
+  }
+
   // ── Log a friendly hello ─────────────────
   if (console && console.log) {
     console.log(
