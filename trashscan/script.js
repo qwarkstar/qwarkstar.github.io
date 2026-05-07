@@ -111,11 +111,8 @@
   const gsapReady = typeof window.gsap !== 'undefined';
   const reduceMo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (gsapReady) {
-    document.documentElement.classList.add('gsap-init');
-  }
-
   if (gsapReady && !reduceMo) {
+    document.documentElement.classList.add('gsap-init');
     gsap.registerPlugin(ScrollTrigger);
 
     // Hero entrance
@@ -227,6 +224,23 @@
         }
       );
     });
+
+    // Background glow parallax
+    if (document.querySelector('.bg-glow')) {
+      gsap.set('.bg-glow', { xPercent: -50 });
+      gsap.to('.bg-glow', {
+        y: -240,
+        ease: 'none',
+        scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom top', scrub: true }
+      });
+    }
+    if (document.querySelector('.bg-glow-2')) {
+      gsap.to('.bg-glow-2', {
+        y: 180,
+        ease: 'none',
+        scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom top', scrub: true }
+      });
+    }
 
     // Firmware code block: subtle line-by-line highlight pulse on scroll into view
     const codeBlock = document.querySelector('.firmware-code pre code');

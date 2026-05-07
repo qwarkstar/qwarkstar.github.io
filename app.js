@@ -116,11 +116,10 @@
   const gsapReady = typeof window.gsap !== 'undefined';
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (gsapReady) {
-    document.documentElement.classList.add('gsap-init');
-  }
-
   if (gsapReady && !reducedMotion) {
+    // Add gsap-init only when we'll actually run reveal tweens — otherwise the
+    // CSS rule would leave the hero permanently hidden.
+    document.documentElement.classList.add('gsap-init');
     gsap.registerPlugin(ScrollTrigger);
 
     // Hero entrance choreography
@@ -223,5 +222,59 @@
         }
       );
     });
+
+    // Background glow parallax — fixed glows drift as you scroll for depth
+    const bgGlow = document.querySelector('.bg-glow');
+    if (bgGlow) {
+      gsap.set('.bg-glow', { xPercent: -50 }); // preserve CSS centering
+      gsap.to('.bg-glow', {
+        y: -240,
+        ease: 'none',
+        scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom top', scrub: true }
+      });
+    }
+    if (document.querySelector('.bg-glow-2')) {
+      gsap.to('.bg-glow-2', {
+        y: 180,
+        ease: 'none',
+        scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom top', scrub: true }
+      });
+    }
+
+    // Marquee speed reactive to scroll velocity
+    const marqueeTracks = document.querySelectorAll('.marquee-track');
+    if (marqueeTracks.length) {
+      marqueeTracks.forEach(track => {
+        track.style.animation = 'none'; // disable CSS keyframe so GSAP owns it
+        track._marqueeTween = gsap.to(track, {
+          xPercent: -50,
+          duration: 50,
+          ease: 'none',
+          repeat: -1
+        });
+      });
+      let scrollEndTimer;
+      ScrollTrigger.create({
+        trigger: document.body,
+        start: 0,
+        end: 'max',
+        onUpdate: (self) => {
+          const v = gsap.utils.clamp(1, 8, 1 + Math.abs(self.getVelocity()) / 2000);
+          marqueeTracks.forEach(track => {
+            if (track._marqueeTween) {
+              gsap.to(track._marqueeTween, { timeScale: v, duration: 0.2, overwrite: 'auto' });
+            }
+          });
+          clearTimeout(scrollEndTimer);
+          scrollEndTimer = setTimeout(() => {
+            marqueeTracks.forEach(track => {
+              if (track._marqueeTween) {
+                gsap.to(track._marqueeTween, { timeScale: 1, duration: 1.2, ease: 'power2.out' });
+              }
+            });
+          }, 150);
+        }
+      });
+    }
   }
 })();
