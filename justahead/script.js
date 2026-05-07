@@ -156,12 +156,122 @@
   if (console && console.log) {
     console.log(
       '%cR·iving',
-      'color: #0A84FF; font-size: 28px; font-weight: 800; letter-spacing: -0.03em;'
+      'color: #4f93ff; font-size: 28px; font-weight: 800; letter-spacing: -0.03em;'
     );
     console.log(
       '%cNever miss your stop again. %c→ julian.rzezak@gmail.com',
-      'color: #a1a1aa; font-size: 13px;',
-      'color: #6b6b76; font-size: 13px;'
+      'color: #94a3b8; font-size: 13px;',
+      'color: #64748b; font-size: 13px;'
     );
+  }
+
+  // ── GSAP animations ──────────────────────
+  const gsapReady = typeof window.gsap !== 'undefined';
+  const reduceMo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (gsapReady) {
+    document.documentElement.classList.add('gsap-init');
+  }
+
+  if (gsapReady && !reduceMo) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero entrance
+    const heroEls = ['.hero-title', '.badge', '.hero-sub', '.hero-cta', '.hero-stats', '.phone-wrap'];
+    const present = heroEls.filter(sel => document.querySelector(sel));
+    if (present.length) {
+      gsap.set(present, { autoAlpha: 0, y: 30 });
+      const tl = gsap.timeline({ delay: 0.15, defaults: { ease: 'power3.out', duration: 0.9 } });
+      const seq = [
+        { sel: '.badge',      dur: 0.6, off: 0       },
+        { sel: '.hero-title', dur: 0.9, off: '-=0.3' },
+        { sel: '.hero-sub',   dur: 0.9, off: '-=0.6' },
+        { sel: '.hero-cta',   dur: 0.9, off: '-=0.6' },
+        { sel: '.hero-stats', dur: 0.9, off: '-=0.7' },
+        { sel: '.phone-wrap', dur: 1.0, off: '-=0.8' }
+      ];
+      seq.forEach(s => {
+        if (document.querySelector(s.sel)) {
+          tl.to(s.sel, { autoAlpha: 1, y: 0, duration: s.dur }, s.off);
+        }
+      });
+    }
+
+    // Reveal on scroll (cards, sections, articles)
+    const revealSelectors = [
+      '.section-head', '.step', '.feature', '.audience', '.faq-item',
+      '.trust-text', '.trust-check', '.cta', '.article > h2',
+      '.article > h3', '.article > p', '.article > ul',
+      '.faq-doc details', '.contact-card'
+    ].join(', ');
+    const revealEls = document.querySelectorAll(revealSelectors);
+    if (revealEls.length) {
+      gsap.set(revealEls, { autoAlpha: 0, y: 40 });
+      ScrollTrigger.batch(revealEls, {
+        start: 'top 88%',
+        onEnter: (els) => gsap.to(els, {
+          autoAlpha: 1,
+          y: 0,
+          stagger: 0.08,
+          duration: 0.7,
+          ease: 'power3.out',
+          overwrite: true
+        })
+      });
+    }
+
+    // Magnetic CTA buttons
+    const mm = gsap.matchMedia();
+    mm.add('(hover: hover) and (pointer: fine)', () => {
+      document.querySelectorAll('.btn-primary, .btn-large').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.4, ease: 'power2.out' });
+        });
+        btn.addEventListener('mouseleave', () => {
+          gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
+        });
+      });
+    });
+
+    // Hero stat counters (numeric only — skips "Zero", "Unlimited", "100%" stays as percent)
+    document.querySelectorAll('.hero-stats .stat strong').forEach(el => {
+      const text = el.textContent.trim();
+      const match = text.match(/^([\d.]+)(.*)$/);
+      if (!match) return;
+      const target = parseFloat(match[1]);
+      const suffix = match[2];
+      const isFloat = match[1].includes('.');
+      const obj = { val: 0 };
+      const setText = (v) => { el.textContent = (isFloat ? v.toFixed(1) : Math.round(v)) + suffix; };
+      setText(0);
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 90%',
+        once: true,
+        onEnter: () => gsap.to(obj, {
+          val: target,
+          duration: 1.4,
+          ease: 'power2.out',
+          onUpdate: () => setText(obj.val)
+        })
+      });
+    });
+
+    // Gradient glint
+    document.querySelectorAll('.gradient').forEach(el => {
+      gsap.fromTo(el,
+        { '--shine': '-120%' },
+        {
+          '--shine': '220%',
+          duration: 1.4,
+          ease: 'power2.inOut',
+          repeat: -1,
+          repeatDelay: 4
+        }
+      );
+    });
   }
 })();

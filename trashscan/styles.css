@@ -1361,3 +1361,655 @@ a {
     padding: 20px;
   }
 }
+
+/* ════════════════════════════════════════════════════
+   v3 DESIGN — glassmorphism + trust palette + Manrope
+   Hardware accent stays green for TrashScan identity
+═════════════════════════════════════════════════════ */
+
+:root {
+  --bg-0: #060914;
+  --bg-1: #0a0f1c;
+  --bg-2: #111729;
+  --bg-3: #18203a;
+  --border: #1f2a44;
+  --border-soft: #131a2c;
+
+  --text: #f1f5f9;
+  --text-dim: #94a3b8;
+  --text-mute: #64748b;
+  --text-faint: #334155;
+
+  --accent: #34d399;
+  --accent-soft: #6ee7b7;
+  --accent-deep: #047857;
+  --accent-blue: #4f93ff;
+
+  --green: var(--accent);
+  --green-dim: rgba(52, 211, 153, 0.4);
+  --green-soft: rgba(52, 211, 153, 0.1);
+  --blue: var(--accent-blue);
+  --gold: #7eb1ff;
+  --amber: #fbbf24;
+
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-strong: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-strong: rgba(255, 255, 255, 0.14);
+
+  --font-display: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+body {
+  font-family: var(--font-display);
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(52, 211, 153, 0.10), transparent 60%),
+    radial-gradient(900px 500px at 100% 100%, rgba(79, 147, 255, 0.06), transparent 60%),
+    var(--bg-0);
+  letter-spacing: -0.005em;
+}
+
+.bg-glow { background: radial-gradient(circle, rgba(52, 211, 153, 0.18) 0%, transparent 60%); filter: blur(90px); }
+.bg-glow-2 { background: radial-gradient(circle, rgba(79, 147, 255, 0.07) 0%, transparent 60%); }
+
+/* ── Scroll progress bar ───────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  z-index: 200;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent));
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.5);
+  transition: width 80ms linear;
+}
+
+/* ── Trust solid emphasis (replaces gradient text) ── */
+.gradient {
+  background: none;
+  -webkit-background-clip: initial;
+          background-clip: initial;
+  -webkit-text-fill-color: currentColor;
+  color: var(--accent-soft);
+  font-weight: 800;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* ── Typography — Manrope ──────────────────────────── */
+.brand,
+.hero-title,
+.section-head h2,
+.pipe-step h3,
+.tech h4,
+.firmware-text h2,
+.report-cta-text h3,
+.member h3,
+.cta h2,
+.outcome h3,
+.overview-block h3,
+.btn,
+.btn-large {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+
+.hero-title { font-weight: 800; letter-spacing: -0.04em; }
+
+.eyebrow,
+.tech-label,
+.pipe-num,
+.diagram-text span,
+.code-title,
+.chall-label,
+.nav-links a,
+.footer-col h4,
+.footer-col a,
+.footer-bottom p,
+.member p,
+.member-avatar,
+.brand-mark,
+.hero-stats .stat strong,
+.hero-stats .stat span,
+.diagram-caption {
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+
+/* ── Nav: glass ────────────────────────────────────── */
+.nav.scrolled {
+  background: rgba(10, 15, 28, 0.7);
+  backdrop-filter: saturate(180%) blur(28px);
+  -webkit-backdrop-filter: saturate(180%) blur(28px);
+  border-bottom-color: var(--glass-border);
+}
+
+.brand-mark {
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  color: #fff;
+  font-weight: 800;
+  border-radius: 9px;
+  box-shadow:
+    0 4px 20px rgba(52, 211, 153, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.nav-links a {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  position: relative;
+}
+
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px rgba(52, 211, 153, 0.7);
+  transition: transform 0.25s var(--ease);
+}
+
+.nav-links a.active {
+  padding-left: 22px;
+  color: var(--text);
+  background: transparent;
+}
+
+.nav-links a.active::before { transform: translateY(-50%) scale(1); }
+
+/* ── Hero: glass badge + buttons ───────────────────── */
+.badge {
+  background: var(--glass);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--accent);
+}
+
+.badge-dot {
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.6);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #042414;
+  font-weight: 700;
+  box-shadow:
+    0 8px 24px rgba(52, 211, 153, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:hover {
+  background: var(--accent-soft);
+  box-shadow:
+    0 12px 32px rgba(52, 211, 153, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.btn-ghost {
+  background: var(--glass);
+  border-color: var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-weight: 600;
+}
+
+.btn-ghost:hover {
+  background: var(--glass-strong);
+  border-color: var(--glass-border-strong);
+}
+
+/* ── Hero stats: glass panel ───────────────────────── */
+.hero-stats {
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 18px 24px;
+  display: inline-flex;
+}
+
+.stat-divider { background: var(--glass-border); }
+
+.hero-stats .stat strong {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text);
+}
+
+.hero-stats .stat span { color: var(--text-mute); }
+
+/* ── Hero diagram: glass card ──────────────────────── */
+.diagram-card {
+  background:
+    linear-gradient(145deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.015));
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 24px 60px -20px rgba(0, 0, 0, 0.5);
+}
+
+.diagram-node {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+}
+
+.diagram-icon {
+  background: rgba(52, 211, 153, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+}
+
+.diagram-arrow svg { color: var(--accent); }
+
+/* ── Section dark surfaces ─────────────────────────── */
+.section-dark {
+  background:
+    linear-gradient(180deg,
+      rgba(255, 255, 255, 0.012),
+      rgba(255, 255, 255, 0.005)),
+    var(--bg-1);
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+/* ── Eyebrow ───────────────────────────────────────── */
+.eyebrow {
+  letter-spacing: 0.18em;
+  font-weight: 500;
+  font-size: 11px;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  color: var(--text-dim);
+  padding: 5px 12px 5px 24px;
+  position: relative;
+}
+
+.eyebrow::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.7);
+}
+
+/* ── Overview blocks: glass ────────────────────────── */
+.overview-block {
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 12px 28px -12px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.overview-block:hover {
+  background: var(--glass-strong);
+  border-color: var(--glass-border-strong);
+}
+
+.overview-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.6), transparent);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+
+.overview-block:hover::before { opacity: 1; }
+
+.overview-icon {
+  background: rgba(52, 211, 153, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+}
+
+/* ── Pipeline: glass + connected stations ─────────── */
+.pipeline-line { position: relative; }
+
+.pipeline-line-track {
+  position: absolute;
+  top: 64px;
+  left: 32px;
+  right: 32px;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(52, 211, 153, 0.5) 8%,
+    rgba(79, 147, 255, 0.5) 50%,
+    rgba(52, 211, 153, 0.5) 92%,
+    transparent 100%);
+  border-radius: 2px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.pipeline-line-track::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: tsTrackShine 5s ease-in-out infinite;
+}
+
+@keyframes tsTrackShine {
+  0%   { transform: translateX(-80px); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(110vw); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pipeline-line-track::after { animation: none; opacity: 0; }
+}
+
+.pipeline-line .pipe-step { position: relative; z-index: 1; }
+
+.pipeline-line .pipe-step::before {
+  content: '';
+  position: absolute;
+  top: 56px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg-1);
+  border: 2px solid var(--accent);
+  box-shadow:
+    0 0 12px rgba(52, 211, 153, 0.6),
+    inset 0 0 0 3px var(--bg-1);
+  z-index: 0;
+}
+
+.pipeline-line .pipe-step:last-child::before {
+  border-color: var(--accent-blue);
+  box-shadow:
+    0 0 12px rgba(79, 147, 255, 0.6),
+    inset 0 0 0 3px var(--bg-1);
+}
+
+@media (max-width: 980px) {
+  .pipeline-line-track { display: none; }
+  .pipeline-line .pipe-step::before { display: none; }
+}
+
+.pipe-step {
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 12px 28px -12px rgba(0, 0, 0, 0.5);
+}
+
+.pipe-step:hover {
+  background: var(--glass-strong);
+  border-color: var(--glass-border-strong);
+}
+
+.pipe-num {
+  color: var(--accent-soft);
+  font-weight: 600;
+}
+
+/* ── Tech grid: glass ──────────────────────────────── */
+.tech {
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+}
+
+.tech:hover {
+  background: var(--glass-strong);
+  border-color: var(--glass-border-strong);
+}
+
+.tech-label {
+  background: rgba(52, 211, 153, 0.08);
+  color: var(--accent);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  font-weight: 500;
+}
+
+/* ── Firmware code block: frosted terminal ────────── */
+.firmware-code {
+  background:
+    linear-gradient(180deg,
+      rgba(8, 12, 22, 0.85),
+      rgba(8, 12, 22, 0.92));
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 24px 60px -20px rgba(0, 0, 0, 0.5);
+}
+
+.code-header {
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.code-dots i:nth-child(1) { background: #ff5f57; }
+.code-dots i:nth-child(2) { background: #febc2e; }
+.code-dots i:nth-child(3) { background: #28c840; }
+
+.firmware-code pre code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+
+.c-key  { color: #c084fc; font-weight: 500; }
+.c-num  { color: #fbbf24; }
+.c-bool { color: var(--accent); font-weight: 500; }
+.c-fn   { color: var(--accent-blue); font-weight: 500; }
+.c-com  { color: var(--text-mute); font-style: italic; }
+
+/* ── Report CTA: glass ─────────────────────────────── */
+.report-cta {
+  background:
+    linear-gradient(145deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.015));
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 24px 60px -20px rgba(0, 0, 0, 0.5);
+}
+
+.report-cta-icon {
+  background: rgba(52, 211, 153, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+/* ── Challenge cards: glass ────────────────────────── */
+.challenge {
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+}
+
+.challenge:hover {
+  background: var(--glass-strong);
+  border-color: var(--glass-border-strong);
+}
+
+.chall-label-problem {
+  background: rgba(255, 69, 58, 0.1);
+  color: #fb7185;
+  border: 1px solid rgba(255, 69, 58, 0.25);
+}
+
+.chall-label-fix {
+  background: rgba(52, 211, 153, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+}
+
+/* ── Role list ─────────────────────────────────────── */
+.role-list li {
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+}
+
+.role-list li:hover {
+  background: var(--glass-strong);
+  border-color: var(--glass-border-strong);
+}
+
+.role-check {
+  background: rgba(52, 211, 153, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.outcome {
+  background:
+    linear-gradient(145deg,
+      rgba(52, 211, 153, 0.1),
+      rgba(52, 211, 153, 0.03));
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+}
+
+.outcome-icon {
+  background: rgba(52, 211, 153, 0.18);
+  color: var(--accent);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+}
+
+/* ── Team members: glass + avatar gradient ─────────── */
+.member {
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+}
+
+.member:hover {
+  background: var(--glass-strong);
+  border-color: var(--glass-border-strong);
+  transform: translateY(-3px);
+}
+
+.member-avatar {
+  background: linear-gradient(135deg, var(--accent-blue), #1d4ed8);
+  color: #fff;
+  font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.member-avatar-self {
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  box-shadow: 0 8px 24px rgba(52, 211, 153, 0.3);
+}
+
+/* ── CTA section: glass ────────────────────────────── */
+.cta {
+  background:
+    linear-gradient(145deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.015));
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 24px 60px -20px rgba(0, 0, 0, 0.5);
+}
+
+.cta-icon {
+  background: rgba(52, 211, 153, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+}
+
+/* ── Footer ────────────────────────────────────────── */
+.footer {
+  background:
+    linear-gradient(180deg,
+      rgba(255, 255, 255, 0.012),
+      rgba(255, 255, 255, 0.005)),
+    var(--bg-1);
+  border-top: 1px solid var(--glass-border);
+}
+
+.footer-col h4 {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  color: var(--text-mute);
+}
+
+.footer-col a { font-size: 13px; letter-spacing: 0.02em; }
+.footer-col a:hover { color: var(--accent-soft); }
+.footer-bottom p { font-size: 12px; letter-spacing: 0.02em; }
+
+/* ── GSAP entrance gating + gradient glint ─────────── */
+.gsap-init .hero-title,
+.gsap-init .badge,
+.gsap-init .hero-sub,
+.gsap-init .hero-cta,
+.gsap-init .hero-stats,
+.gsap-init .hero-diagram { visibility: hidden; }
+
+.gradient {
+  --shine: -120%;
+  background-image: linear-gradient(
+    100deg,
+    transparent calc(var(--shine) - 20%),
+    rgba(255, 255, 255, 0.85) var(--shine),
+    transparent calc(var(--shine) + 20%)
+  );
+  -webkit-background-clip: text;
+          background-clip: text;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient { background-image: none; }
+}

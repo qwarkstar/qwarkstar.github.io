@@ -2076,3 +2076,27 @@ body {
   .route-marquee-track { gap: 16px; }
   .audience-icon { width: 48px; height: 48px; }
 }
+
+/* ── GSAP entrance gating + gradient glint ─────────── */
+.gsap-init .hero-title,
+.gsap-init .badge,
+.gsap-init .hero-sub,
+.gsap-init .hero-cta,
+.gsap-init .hero-stats,
+.gsap-init .phone-wrap { visibility: hidden; }
+
+.gradient {
+  --shine: -120%;
+  background-image: linear-gradient(
+    100deg,
+    transparent calc(var(--shine) - 20%),
+    rgba(255, 255, 255, 0.85) var(--shine),
+    transparent calc(var(--shine) + 20%)
+  );
+  -webkit-background-clip: text;
+          background-clip: text;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient { background-image: none; }
+}
