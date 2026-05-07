@@ -13,8 +13,9 @@
       color: '126, 177, 255', density: 35, maxDist: 130, speed: 0.25
     }, opts || {});
     const canvas = document.createElement('canvas');
-    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;';
+    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1;';
     container.style.position = container.style.position || 'relative';
+    container.style.isolation = 'isolate';
     container.prepend(canvas);
     const ctx = canvas.getContext('2d');
     let w = 0, h = 0, dpr = 1, particles = [], mouseX = -9999, mouseY = -9999;
@@ -423,23 +424,23 @@
       });
     }
 
-    // Bolder 3D card tilt + Z-pop on hover
+    // Gentle 3D card tilt + small Z-pop on hover
     mm.add('(hover: hover) and (pointer: fine)', () => {
       const tiltCards = document.querySelectorAll('.step, .feature, .audience, .faq-item');
       tiltCards.forEach(card => {
-        const setRX = gsap.quickTo(card, 'rotateX', { duration: 0.4, ease: 'power2.out' });
-        const setRY = gsap.quickTo(card, 'rotateY', { duration: 0.4, ease: 'power2.out' });
-        card.style.transformPerspective = '900px';
+        const setRX = gsap.quickTo(card, 'rotateX', { duration: 0.5, ease: 'power2.out' });
+        const setRY = gsap.quickTo(card, 'rotateY', { duration: 0.5, ease: 'power2.out' });
+        card.style.transformPerspective = '1100px';
         card.style.transformStyle = 'preserve-3d';
         card.addEventListener('mouseenter', () => {
-          gsap.to(card, { z: 30, duration: 0.4, ease: 'power2.out' });
+          gsap.to(card, { z: 12, duration: 0.5, ease: 'power2.out' });
         });
         card.addEventListener('mousemove', (e) => {
           const rect = card.getBoundingClientRect();
           const x = (e.clientX - rect.left) / rect.width - 0.5;
           const y = (e.clientY - rect.top) / rect.height - 0.5;
-          setRY(x * 8);
-          setRX(-y * 8);
+          setRY(x * 5);
+          setRX(-y * 5);
         });
         card.addEventListener('mouseleave', () => {
           gsap.to(card, { rotateX: 0, rotateY: 0, z: 0, duration: 0.7, ease: 'power3.out' });
@@ -447,30 +448,78 @@
       });
     });
 
-    // Pinned "How it works" — steps activate one-by-one on scroll
+    // Pinned "How it works" — steps activate one-by-one on scroll (short pin)
     const howSection = document.querySelector('#how');
     const howSteps = howSection ? howSection.querySelectorAll('.step') : [];
     if (howSteps.length) {
-      // Override the global reveal initial state for these steps so the pin
-      // controls them instead of the batch.
-      gsap.set(howSteps, { autoAlpha: 0.35, scale: 0.92, y: 0 });
+      gsap.set(howSteps, { autoAlpha: 0.4, scale: 0.94, y: 0 });
       const stepsTl = gsap.timeline({
         scrollTrigger: {
           trigger: howSection,
           start: 'top top',
-          end: '+=' + (howSteps.length * 280),
+          end: '+=' + (howSteps.length * 140), // halved from 280 — much tighter pin
           pin: true,
           pinSpacing: true,
-          scrub: 0.6
+          scrub: 0.5
         }
       });
       howSteps.forEach((step, i) => {
-        const dot = step; // station dot is :before pseudo, can't tween directly
-        stepsTl
-          .to(step, { autoAlpha: 1, scale: 1, duration: 1, ease: 'power2.out' }, i)
-          .to(step, { '--step-glow': '1', duration: 0.4 }, i + 0.2);
+        stepsTl.to(step, { autoAlpha: 1, scale: 1, duration: 1, ease: 'power2.out' }, i);
       });
     }
+
+    // Magnetic nav links
+    mm.add('(hover: hover) and (pointer: fine)', () => {
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        const setX = gsap.quickTo(link, 'x', { duration: 0.4, ease: 'power3.out' });
+        const setY = gsap.quickTo(link, 'y', { duration: 0.4, ease: 'power3.out' });
+        link.addEventListener('mousemove', (e) => {
+          const r = link.getBoundingClientRect();
+          setX((e.clientX - r.left - r.width / 2) * 0.3);
+          setY((e.clientY - r.top - r.height / 2) * 0.3);
+        });
+        link.addEventListener('mouseleave', () => {
+          gsap.to(link, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
+        });
+      });
+    });
+
+    // Hero spotlight (green-tinted to match R·iving)
+    const heroEl = document.querySelector('.hero');
+    if (heroEl) {
+      const spotlight = document.createElement('div');
+      spotlight.className = 'hero-spotlight';
+      spotlight.style.cssText = 'position:absolute;inset:0;pointer-events:none;z-index:0;opacity:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(110,231,183,0.16), transparent 60%);transition:opacity 0.5s ease;mix-blend-mode:screen;';
+      heroEl.appendChild(spotlight);
+      heroEl.addEventListener('mouseenter', () => { spotlight.style.opacity = '1'; });
+      heroEl.addEventListener('mouseleave', () => { spotlight.style.opacity = '0'; });
+      heroEl.addEventListener('mousemove', (e) => {
+        const r = heroEl.getBoundingClientRect();
+        spotlight.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        spotlight.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    }
+
+    // Card icon spring-pop on card hover
+    mm.add('(hover: hover) and (pointer: fine)', () => {
+      const iconHostMap = [
+        { card: '.step',     icon: '.step-icon'     },
+        { card: '.feature',  icon: '.feature-icon'  },
+        { card: '.audience', icon: '.audience-icon' }
+      ];
+      iconHostMap.forEach(({ card, icon }) => {
+        document.querySelectorAll(card).forEach(host => {
+          const ic = host.querySelector(icon);
+          if (!ic) return;
+          host.addEventListener('mouseenter', () => {
+            gsap.to(ic, { y: -6, scale: 1.08, duration: 0.45, ease: 'back.out(2.4)' });
+          });
+          host.addEventListener('mouseleave', () => {
+            gsap.to(ic, { y: 0, scale: 1, duration: 0.55, ease: 'power2.out' });
+          });
+        });
+      });
+    });
 
     // Route-marquee speed reactive to scroll velocity
     const marqueeTracks = document.querySelectorAll('.route-marquee-track');
