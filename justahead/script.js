@@ -172,25 +172,62 @@
   if (gsapReady && !reduceMo) {
     document.documentElement.classList.add('gsap-init');
     gsap.registerPlugin(ScrollTrigger);
+    if (typeof SplitText !== 'undefined') gsap.registerPlugin(SplitText);
 
     // Hero entrance
     const heroEls = ['.hero-title', '.badge', '.hero-sub', '.hero-cta', '.hero-stats', '.phone-wrap'];
     const present = heroEls.filter(sel => document.querySelector(sel));
     if (present.length) {
-      gsap.set(present, { autoAlpha: 0, y: 30 });
+      gsap.set(present, { autoAlpha: 0 });
+      gsap.set(present.filter(s => s !== '.hero-title'), { y: 30 });
+
       const tl = gsap.timeline({ delay: 0.15, defaults: { ease: 'power3.out', duration: 0.9 } });
-      const seq = [
-        { sel: '.badge',      dur: 0.6, off: 0       },
-        { sel: '.hero-title', dur: 0.9, off: '-=0.3' },
-        { sel: '.hero-sub',   dur: 0.9, off: '-=0.6' },
-        { sel: '.hero-cta',   dur: 0.9, off: '-=0.6' },
-        { sel: '.hero-stats', dur: 0.9, off: '-=0.7' },
-        { sel: '.phone-wrap', dur: 1.0, off: '-=0.8' }
+      tl.to('.badge', { autoAlpha: 1, y: 0, duration: 0.6 });
+
+      const heroTitle = document.querySelector('.hero-title');
+      if (heroTitle && typeof SplitText !== 'undefined') {
+        const split = new SplitText(heroTitle, { type: 'words', mask: 'words', wordsClass: 'hero-word' });
+        gsap.set(heroTitle, { autoAlpha: 1 });
+        gsap.set(split.words, { yPercent: 110 });
+        tl.to(split.words, {
+          yPercent: 0,
+          duration: 1.0,
+          ease: 'power3.out',
+          stagger: 0.06
+        }, '-=0.35');
+      } else if (heroTitle) {
+        tl.to('.hero-title', { autoAlpha: 1, y: 0, duration: 0.9 }, '-=0.35');
+      }
+
+      const restSeq = [
+        { sel: '.hero-sub',   off: '-=0.6' },
+        { sel: '.hero-cta',   off: '-=0.6' },
+        { sel: '.hero-stats', off: '-=0.7' },
+        { sel: '.phone-wrap', off: '-=0.8' }
       ];
-      seq.forEach(s => {
+      restSeq.forEach(s => {
         if (document.querySelector(s.sel)) {
-          tl.to(s.sel, { autoAlpha: 1, y: 0, duration: s.dur }, s.off);
+          tl.to(s.sel, { autoAlpha: 1, y: 0, duration: 0.9 }, s.off);
         }
+      });
+    }
+
+    // Section h2 word-reveal on scroll
+    if (typeof SplitText !== 'undefined') {
+      document.querySelectorAll('.section-head h2, .trust-text h2, .cta h2').forEach(h2 => {
+        const split = new SplitText(h2, { type: 'words', mask: 'words', wordsClass: 'section-word' });
+        gsap.set(split.words, { yPercent: 110 });
+        ScrollTrigger.create({
+          trigger: h2,
+          start: 'top 85%',
+          once: true,
+          onEnter: () => gsap.to(split.words, {
+            yPercent: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            stagger: 0.05
+          })
+        });
       });
     }
 
@@ -302,6 +339,27 @@
         }
       });
     }
+
+    // Subtle 2D card tilt on hover (desktop, fine pointer only)
+    mm.add('(hover: hover) and (pointer: fine)', () => {
+      const tiltCards = document.querySelectorAll('.step, .feature, .audience, .faq-item');
+      tiltCards.forEach(card => {
+        const setRX = gsap.quickTo(card, 'rotateX', { duration: 0.5, ease: 'power2.out' });
+        const setRY = gsap.quickTo(card, 'rotateY', { duration: 0.5, ease: 'power2.out' });
+        card.style.transformPerspective = '1000px';
+        card.style.transformStyle = 'preserve-3d';
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          setRY(x * 4);
+          setRX(-y * 4);
+        });
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.6, ease: 'power3.out' });
+        });
+      });
+    });
 
     // Route-marquee speed reactive to scroll velocity
     const marqueeTracks = document.querySelectorAll('.route-marquee-track');
