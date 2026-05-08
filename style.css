@@ -1107,6 +1107,7 @@ a {
   flex-wrap: wrap;
 }
 
+.cert-head h3,
 .cert-head h4 {
   font-size: 17px;
   font-weight: 700;
@@ -1317,6 +1318,7 @@ a {
   max-width: 280px;
 }
 
+.footer-col h3,
 .footer-col h4 {
   font-size: 13px;
   font-weight: 700;
@@ -1615,6 +1617,7 @@ body {
 .cert-date,
 .edu-date,
 .nav-links a,
+.footer-col h3,
 .footer-col h4,
 .footer-col a,
 .footer-bottom p,
@@ -1770,21 +1773,17 @@ body {
   margin-bottom: 40px;
 }
 
-/* Glass badge */
+/* Status badge — solid */
 .badge {
-  background: var(--glass);
-  border: 1px solid rgba(52, 211, 153, 0.3);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.25);
   color: var(--success);
 }
 
-/* Glass social row */
+/* Social row — solid */
 .social-row {
-  background: var(--glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
+  background: var(--bg-2);
+  border: 1px solid var(--border-soft);
   margin-left: 0;
 }
 
@@ -1851,27 +1850,23 @@ body {
 }
 
 .btn-ghost {
-  background: var(--glass);
-  border-color: var(--glass-border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--bg-2);
+  border-color: var(--border-soft);
   font-weight: 600;
 }
 
 .btn-ghost:hover {
-  background: var(--glass-strong);
-  border-color: var(--glass-border-strong);
+  background: var(--bg-3);
+  border-color: var(--border);
 }
 
-/* ── Skill marquee — glassmorphism ─────────────────── */
+/* ── Skill marquee — solid divider ─────────────────── */
 .marquee {
   position: relative;
   z-index: 1;
-  background: rgba(10, 15, 28, 0.6);
-  backdrop-filter: saturate(180%) blur(24px);
-  -webkit-backdrop-filter: saturate(180%) blur(24px);
-  border-top: 1px solid var(--glass-border);
-  border-bottom: 1px solid var(--glass-border);
+  background: var(--bg-1);
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
   overflow: hidden;
   padding: 18px 0;
   font-family: var(--font-display);
@@ -1920,6 +1915,13 @@ body {
   .marquee-track { animation: none; }
 }
 
+/* ── Section rhythm: vary padding to break monotony ── */
+.section[data-index="01"] { padding: 120px 0; }   /* About — air after hero */
+.section[data-index="02"] { padding: 100px 0; }   /* Projects — standard */
+.section[data-index="03"] { padding: 80px 0; }    /* Education — tight */
+.section[data-index="04"] { padding: 100px 0; }   /* Certs — standard */
+.section[data-index="05"] { padding: 120px 0; }   /* Contact — air before footer */
+
 /* ── Section signature index numbers ───────────────── */
 .section { position: relative; }
 
@@ -1961,10 +1963,8 @@ body {
   font-weight: 500;
   font-size: 11px;
   letter-spacing: 0.18em;
-  background: var(--glass);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
+  background: var(--bg-2);
+  border: 1px solid var(--border-soft);
   color: var(--text-dim);
   padding: 5px 12px 5px 24px;
   position: relative;
@@ -1994,30 +1994,20 @@ body {
   border-bottom: 1px solid var(--glass-border);
 }
 
-/* ── Featured cards: GLASS ─────────────────────────── */
+/* ── Featured cards: solid ─────────────────────────── */
 .featured-card {
-  background:
-    linear-gradient(145deg,
-      rgba(255, 255, 255, 0.04),
-      rgba(255, 255, 255, 0.015));
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid var(--glass-border);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.05) inset,
-    0 24px 60px -20px rgba(0, 0, 0, 0.5);
+  background: var(--bg-2);
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.5);
 }
 
 .featured-card::before {
-  background: radial-gradient(circle, rgba(79, 147, 255, 0.18), transparent 60%);
+  background: radial-gradient(circle, rgba(79, 147, 255, 0.14), transparent 60%);
 }
 
 .featured-card:hover {
-  border-color: rgba(79, 147, 255, 0.35);
-  background:
-    linear-gradient(145deg,
-      rgba(255, 255, 255, 0.055),
-      rgba(255, 255, 255, 0.02));
+  border-color: rgba(79, 147, 255, 0.3);
+  background: var(--bg-3);
 }
 
 .featured-content h3 {
@@ -2063,10 +2053,8 @@ body {
 }
 
 .featured-tags span {
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: var(--bg-3);
+  border: 1px solid var(--border-soft);
   font-family: var(--font-mono);
   font-weight: 500;
 }
@@ -2106,15 +2094,11 @@ body {
     0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
-/* ── Project card: GLASS ───────────────────────────── */
+/* ── Project card: solid ───────────────────────────── */
 .project-card {
-  background: var(--glass);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid var(--glass-border);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.04) inset,
-    0 12px 28px -12px rgba(0, 0, 0, 0.5);
+  background: var(--bg-2);
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.5);
   position: relative;
   overflow: hidden;
 }
@@ -2135,8 +2119,8 @@ body {
 }
 
 .project-card:hover {
-  background: var(--glass-strong);
-  border-color: var(--glass-border-strong);
+  background: var(--bg-3);
+  border-color: var(--border);
 }
 
 .project-card:hover::before { opacity: 1; }
@@ -2165,8 +2149,8 @@ body {
 }
 
 .project-tags span {
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
+  background: var(--bg-3);
+  border: 1px solid var(--border-soft);
   font-family: var(--font-mono);
   font-weight: 500;
 }
@@ -2187,22 +2171,18 @@ body {
   box-shadow: 0 0 6px rgba(79, 147, 255, 0.6);
 }
 
-/* ── Education + cert: GLASS ───────────────────────── */
+/* ── Education + cert: solid ───────────────────────── */
 .edu-card,
 .cert-card {
-  background: var(--glass);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid var(--glass-border);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.04) inset,
-    0 12px 28px -12px rgba(0, 0, 0, 0.5);
+  background: var(--bg-2);
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.5);
 }
 
 .edu-card:hover,
 .cert-card:hover {
-  background: var(--glass-strong);
-  border-color: var(--glass-border-strong);
+  background: var(--bg-3);
+  border-color: var(--border);
 }
 
 .edu-logo {
@@ -2241,18 +2221,11 @@ body {
   color: var(--accent-soft);
 }
 
-/* ── Contact card: GLASS ───────────────────────────── */
+/* ── Contact card: solid ───────────────────────────── */
 .contact-card {
-  background:
-    linear-gradient(145deg,
-      rgba(255, 255, 255, 0.04),
-      rgba(255, 255, 255, 0.015));
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  border: 1px solid var(--glass-border);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.05) inset,
-    0 24px 60px -20px rgba(0, 0, 0, 0.5);
+  background: var(--bg-2);
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.5);
   padding: 88px 40px;
 }
 
@@ -2308,6 +2281,7 @@ body {
   border-top: 1px solid var(--glass-border);
 }
 
+.footer-col h3,
 .footer-col h4 {
   font-size: 11px;
   letter-spacing: 0.2em;
@@ -2364,26 +2338,53 @@ body {
   .contact-card { padding: 60px 24px; }
 }
 
-/* ── GSAP entrance gating + gradient glint ─────────── */
+/* ── GSAP entrance gating ────────────────────────── */
 .gsap-init .hero-title,
 .gsap-init .badge,
 .gsap-init .hero-sub,
 .gsap-init .hero-cta,
 .gsap-init .social-row { visibility: hidden; }
 
-.gradient {
-  --shine: -120%;
-  background-image: linear-gradient(
-    100deg,
-    transparent calc(var(--shine) - 20%),
-    rgba(255, 255, 255, 0.85) var(--shine),
-    transparent calc(var(--shine) + 20%)
-  );
-  -webkit-background-clip: text;
-          background-clip: text;
+/* ── Accessibility: skip link + focus-visible ─────── */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  padding: 10px 16px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform 0.2s var(--ease);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .gradient { background-image: none; }
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+.featured-card:focus-visible,
+.project-card:focus-visible,
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.featured-card:focus-visible,
+.project-card:focus-visible,
+.edu-card:focus-visible,
+.cert-card:focus-visible {
+  outline-offset: 4px;
+  border-radius: var(--radius-lg);
 }
 

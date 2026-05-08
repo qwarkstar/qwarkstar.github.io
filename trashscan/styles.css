@@ -699,6 +699,7 @@ a {
   margin-bottom: 12px;
 }
 
+.tech h3,
 .tech h4 {
   font-size: 19px;
   font-weight: 700;
@@ -1200,6 +1201,7 @@ a {
   max-width: 300px;
 }
 
+.footer-col h3,
 .footer-col h4 {
   font-size: 13px;
   font-weight: 700;
@@ -1443,6 +1445,7 @@ body {
 .hero-title,
 .section-head h2,
 .pipe-step h3,
+.tech h3,
 .tech h4,
 .firmware-text h2,
 .report-cta-text h3,
@@ -1466,6 +1469,7 @@ body {
 .code-title,
 .chall-label,
 .nav-links a,
+.footer-col h3,
 .footer-col h4,
 .footer-col a,
 .footer-bottom p,
@@ -1979,6 +1983,7 @@ body {
   border-top: 1px solid var(--glass-border);
 }
 
+.footer-col h3,
 .footer-col h4 {
   font-size: 11px;
   letter-spacing: 0.2em;
@@ -1998,18 +2003,111 @@ body {
 .gsap-init .hero-stats,
 .gsap-init .hero-diagram { visibility: hidden; }
 
-.gradient {
-  --shine: -120%;
-  background-image: linear-gradient(
-    100deg,
-    transparent calc(var(--shine) - 20%),
-    rgba(255, 255, 255, 0.85) var(--shine),
-    transparent calc(var(--shine) + 20%)
-  );
-  -webkit-background-clip: text;
-          background-clip: text;
+/* gradient text is now solid var(--accent-soft); shine animation removed (impeccable: gradient text is an absolute ban) */
+
+/* ── Accessibility: skip link + focus-visible ─────── */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  padding: 10px 16px;
+  background: var(--success);
+  color: #04200f;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform 0.2s var(--ease);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .gradient { background-image: none; }
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--success);
+  outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--success);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.tech:focus-visible,
+.member:focus-visible,
+.overview-block:focus-visible,
+.pipe-step:focus-visible {
+  outline-offset: 4px;
+  border-radius: var(--radius-lg);
+}
+
+/* ── Glass cleanup: solid surfaces over translucent ─
+   Keeps glass on .nav.scrolled only; strips backdrop-filter blur elsewhere. */
+:root {
+  --glass: var(--bg-2);
+  --glass-strong: var(--bg-3);
+  --glass-border: var(--border-soft);
+  --glass-border-strong: var(--border);
+}
+
+.tech,
+.member,
+.overview-block,
+.pipe-step,
+.challenge,
+.firmware-code,
+.report-cta,
+.case-outcome,
+.outcome,
+.cta,
+.diagram-card,
+.diagram-node,
+.eyebrow,
+.btn-ghost,
+.badge,
+.featured-tags span,
+.role-list li {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Section rhythm */
+.section { padding: 100px 0; }
+.section.cta-section { padding: 120px 0; }
+
+/* Overview prose — replaces 3-card grid */
+.overview-prose p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  margin-bottom: 22px;
+}
+
+.overview-prose p:last-child {
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 32px;
+  margin-bottom: 0;
+}
+
+/* Team credit — one line replacing avatar grid */
+.team-credit {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  text-align: center;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.team-credit strong {
+  color: var(--text);
+  font-weight: 600;
 }

@@ -20,8 +20,10 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="bg-glow"></div>
-  <div class="bg-glow bg-glow-2"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <nav class="nav" id="nav">
@@ -44,6 +46,7 @@
     </div>
   </nav>
 
+  <main id="main">
   <!-- Hero -->
   <header class="hero">
     <div class="hero-inner">
@@ -141,34 +144,22 @@
 
   <!-- Overview -->
   <section id="overview" class="section section-dark">
-    <div class="container">
+    <div class="container container-narrow">
       <div class="section-head reveal">
         <span class="eyebrow">The problem</span>
         <h2>Thousands of forks. Thrown out every day.</h2>
       </div>
 
-      <div class="overview-grid">
-        <div class="overview-block reveal">
-          <div class="overview-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <h3>Financial loss</h3>
-          <p>Restaurants throw away reusable metal utensils every year, losing significant money to replacement costs and inventory waste.</p>
-        </div>
-        <div class="overview-block reveal">
-          <div class="overview-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-          </div>
-          <h3>Wasted resources</h3>
-          <p>Every discarded utensil represents raw material, manufacturing, and transport energy that cannot be recovered once it is buried in landfill.</p>
-        </div>
-        <div class="overview-block reveal">
-          <div class="overview-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          </div>
-          <h3>Safety risk</h3>
-          <p>Waste-handling workers get cut by sharp metal items hidden in trash bags. A smart trash can that captures metal upstream removes the hazard at the source.</p>
-        </div>
+      <div class="overview-prose reveal">
+        <p>
+          Restaurants discard reusable metal utensils with food waste every shift, losing real money to
+          replacement costs and inventory turnover. Every fork that ends up in landfill is also raw
+          material, manufacturing, and transport energy that can't be recovered. And buried inside black
+          trash bags, those same utensils cut the workers who handle them downstream.
+        </p>
+        <p>
+          TrashScan catches metal at the source, before it leaves the bin.
+        </p>
       </div>
     </div>
   </section>
@@ -220,42 +211,42 @@
       <div class="tech-grid">
         <div class="tech reveal">
           <span class="tech-label">Microcontroller</span>
-          <h4>Arduino</h4>
+          <h3>Arduino</h3>
           <p>Open-source board running custom C firmware. Controls detection, motor cycles, UV lights, and manual override.</p>
         </div>
         <div class="tech reveal">
           <span class="tech-label">Sensor</span>
-          <h4>Copper induction loop</h4>
+          <h3>Copper induction loop</h3>
           <p>Hand-wound with 0.9 mm enameled copper wire. Replaced an earlier 0.5 mm attempt that revealed a wiring fault.</p>
         </div>
         <div class="tech reveal">
           <span class="tech-label">Detection principle</span>
-          <h4>Eddy-current voltage decay</h4>
+          <h3>Eddy-current voltage decay</h3>
           <p>Faraday's law of induction. When metal enters the field, induced eddy currents shift the decay profile of the sensor signal.</p>
         </div>
         <div class="tech reveal">
           <span class="tech-label">Actuator</span>
-          <h4>Stepper motor + pulley</h4>
+          <h3>Stepper motor + pulley</h3>
           <p>Simple block-and-tackle mechanical configuration that halves the lifting force required from the motor.</p>
         </div>
         <div class="tech reveal">
           <span class="tech-label">Sanitization</span>
-          <h4>UV light</h4>
+          <h3>UV light</h3>
           <p>Activates automatically when the magnet returns to the home position carrying a retrieved item.</p>
         </div>
         <div class="tech reveal">
           <span class="tech-label">User override</span>
-          <h4>Button reset</h4>
+          <h3>Button reset</h3>
           <p>Operator confirms retrieval before detection resumes. Solved the endless-loop problem of re-triggering on metal already on the pulley.</p>
         </div>
         <div class="tech reveal">
           <span class="tech-label">Enclosure</span>
-          <h4>Custom 3D print</h4>
+          <h3>Custom 3D print</h3>
           <p>All components housed in a tailored printed case that keeps the wiring tidy and the device presentable.</p>
         </div>
         <div class="tech reveal">
           <span class="tech-label">Indicators</span>
-          <h4>LED feedback</h4>
+          <h3>LED feedback</h3>
           <p>Real-time status lights tell the operator when the system is idle, confirming a read, retrieving, or sanitizing.</p>
         </div>
       </div>
@@ -467,31 +458,12 @@
       <div class="section-head reveal">
         <span class="eyebrow">Team</span>
         <h2>Built together.</h2>
-        <p>TrashScan was a collaborative first-year engineering project. All contributors listed below.</p>
       </div>
-
-      <div class="team-grid reveal">
-        <div class="member">
-          <div class="member-avatar">JH</div>
-          <h3>Jules Hazen</h3>
-          <p>Contributor</p>
-        </div>
-        <div class="member">
-          <div class="member-avatar">LB</div>
-          <h3>Lukas Bloom</h3>
-          <p>Contributor</p>
-        </div>
-        <div class="member">
-          <div class="member-avatar">AM</div>
-          <h3>Aidan Meht</h3>
-          <p>Contributor</p>
-        </div>
-        <div class="member">
-          <div class="member-avatar member-avatar-self">JR</div>
-          <h3>Julian Rzezak</h3>
-          <p>Firmware · electronics · integration</p>
-        </div>
-      </div>
+      <p class="team-credit reveal">
+        TrashScan was a first-year engineering project at Northeastern, built with
+        <strong>Jules Hazen</strong>, <strong>Lukas Bloom</strong>, and <strong>Aidan Meht</strong>.
+        I led the firmware, electronics, and integration into the printed enclosure.
+      </p>
     </div>
   </section>
 
@@ -512,6 +484,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
@@ -524,7 +498,7 @@
           <p>A first-year engineering project at Northeastern University.</p>
         </div>
         <div class="footer-col">
-          <h4>Project</h4>
+          <h3>Project</h3>
           <a href="#overview">Overview</a>
           <a href="#system">System</a>
           <a href="#firmware">Firmware</a>
@@ -532,7 +506,7 @@
           <a href="#team">Team</a>
         </div>
         <div class="footer-col">
-          <h4>Links</h4>
+          <h3>Links</h3>
           <a href="assets/trashscan-design-report.pdf" target="_blank" rel="noopener">Design report</a>
           <a href="../">Portfolio</a>
           <a href="../justahead/">R·iving</a>

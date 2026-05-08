@@ -1121,6 +1121,7 @@ button {
   max-width: 280px;
 }
 
+.footer-col h3,
 .footer-col h4 {
   font-size: 13px;
   font-weight: 700;
@@ -1540,6 +1541,7 @@ body {
 .cert-date,
 .edu-date,
 .nav-links a,
+.footer-col h3,
 .footer-col h4,
 .footer-col a,
 .footer-bottom p,
@@ -2037,6 +2039,7 @@ body {
 
 .footer-bottom p { font-size: 12px; letter-spacing: 0.02em; }
 
+.footer-col h3,
 .footer-col h4 {
   font-size: 11px;
   letter-spacing: 0.2em;
@@ -2085,18 +2088,295 @@ body {
 .gsap-init .hero-stats,
 .gsap-init .phone-wrap { visibility: hidden; }
 
-.gradient {
-  --shine: -120%;
-  background-image: linear-gradient(
-    100deg,
-    transparent calc(var(--shine) - 20%),
-    rgba(255, 255, 255, 0.85) var(--shine),
-    transparent calc(var(--shine) + 20%)
-  );
-  -webkit-background-clip: text;
-          background-clip: text;
+/* gradient text is now solid var(--accent-soft); shine animation removed (impeccable: gradient text is an absolute ban) */
+
+/* ── Accessibility: skip link + focus-visible ─────── */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  padding: 10px 16px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform 0.2s var(--ease);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .gradient { background-image: none; }
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.feature:focus-visible,
+.audience:focus-visible,
+.step:focus-visible {
+  outline-offset: 4px;
+  border-radius: var(--radius-lg);
+}
+
+/* ── Glass cleanup: solid surfaces over translucent ─
+   Keeps glass on .nav.scrolled and the mobile nav menu only;
+   strips backdrop-filter blur from cards, badges, eyebrow, ghost buttons. */
+:root {
+  --glass: var(--bg-2);
+  --glass-strong: var(--bg-3);
+  --glass-border: var(--border-soft);
+  --glass-border-strong: var(--border);
+}
+
+.featured-card,
+.project-card,
+.edu-card,
+.cert-card,
+.contact-card,
+.faq-item,
+.faq-doc details,
+.feature,
+.audience,
+.step,
+.hero-stats,
+.eyebrow,
+.btn-ghost,
+.social-row,
+.badge,
+.featured-tags span,
+.project-tags span,
+.marquee,
+.route-marquee {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.marquee,
+.route-marquee {
+  background: var(--bg-1);
+}
+
+/* Section rhythm — vary padding to break monotony */
+.section { padding: 100px 0; }
+.section.motto { padding: 80px 0; }
+.section.cta-section { padding: 120px 0; }
+
+/* Hero promise line — replaces hero-stats triplet */
+.hero-promise {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-mute);
+  letter-spacing: 0.01em;
+  margin: 0 0 28px;
+  max-width: 580px;
+}
+
+/* ── Features: mixed-density layout ─────────────────────
+   Replaces the 6-card identical 3×2 grid with: lead feature,
+   2-up paired row, prose callout, 2-up paired tail row. */
+
+.feature-lead {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 56px;
+  align-items: center;
+  padding: 44px;
+  background: var(--bg-2);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-xl);
+  margin-bottom: 24px;
+  transition: transform 0.4s var(--ease), border-color 0.3s;
+}
+
+.feature-lead:hover {
+  transform: translateY(-4px);
+  border-color: var(--border);
+}
+
+.feature-lead-text h3 {
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 18px 0 14px;
+  color: var(--text);
+}
+
+.feature-lead-text p {
+  color: var(--text-dim);
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.feature-lead-stack {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-3);
+  border: 1px solid var(--border-soft);
+}
+
+.feature-lead-stack li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 18px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.feature-lead-stack li:first-child { border-top: 0; }
+
+.feature-lead-stack li span {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.feature-lead-stack li em {
+  font-style: normal;
+  font-size: 12px;
+  color: var(--text-mute);
+}
+
+.feature-lead-stack li:last-child {
+  background: rgba(79, 147, 255, 0.08);
+}
+
+.feature-lead-stack li:last-child span {
+  color: var(--accent-soft);
+}
+
+/* Paired row of two compact feature cards */
+.feature-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.feature-pair-tail { margin-bottom: 0; }
+
+.feature-compact {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 26px 28px;
+  background: var(--bg-2);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  transition: transform 0.4s var(--ease), border-color 0.3s;
+}
+
+.feature-compact:hover {
+  transform: translateY(-4px);
+  border-color: var(--border);
+}
+
+.feature-compact .feature-icon {
+  flex-shrink: 0;
+  margin: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+}
+
+.feature-compact h3 {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin: 4px 0 8px;
+  color: var(--text);
+}
+
+.feature-compact p {
+  color: var(--text-dim);
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Privacy callout — prose-style, no card chrome */
+.feature-callout {
+  margin: 24px 0;
+  padding: 36px 44px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-xl);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-callout::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.10), transparent 70%);
+  pointer-events: none;
+}
+
+.feature-callout > * { position: relative; z-index: 1; }
+
+.feature-callout-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--success);
+  margin: 0 0 14px;
+}
+
+.feature-callout-quote {
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  color: var(--text);
+  margin: 0 0 18px;
+}
+
+.feature-callout-meta {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.feature-callout-meta a {
+  color: var(--accent-soft);
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+@media (max-width: 880px) {
+  .feature-lead { grid-template-columns: 1fr; gap: 32px; padding: 32px; }
+  .feature-pair { grid-template-columns: 1fr; gap: 14px; }
+  .feature-callout { padding: 28px 24px; }
 }
