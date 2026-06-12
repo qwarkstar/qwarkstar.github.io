@@ -22,14 +22,12 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="bg-glow" aria-hidden="true"></div>
-  <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="../" class="brand" aria-label="Back to portfolio">
-        <span class="brand-mark">TS</span>
+        <span class="brand-mark" aria-hidden="true">TS</span>
         <span>TrashScan</span>
       </a>
       <div class="nav-links" id="navLinks">
@@ -46,118 +44,107 @@
     </div>
   </nav>
 
+  <div id="smooth-wrapper">
+  <div id="smooth-content">
+
   <main id="main">
   <!-- Hero -->
   <header class="hero">
-    <div class="hero-inner">
-      <div class="badge fade-in">
-        <span class="badge-dot"></span>
-        <span>First-year engineering project · 2025</span>
+    <div class="container hero-shell">
+      <div class="hero-meta">
+        <span class="hero-meta-item">First-year project</span>
+        <span class="hero-meta-item">2025</span>
+        <span class="hero-meta-item">Northeastern</span>
+        <span class="hero-meta-spacer" aria-hidden="true"></span>
+        <span class="hero-meta-item hero-meta-dim">Doc. TS-01</span>
+        <span class="hero-meta-item hero-meta-dim">42.3398 N / 71.0892 W</span>
       </div>
 
-      <h1 class="hero-title fade-in stagger-1">
-        <span class="gradient">TrashScan.</span><br>
-        Smart metal detection for restaurant waste.
-      </h1>
+      <h1 class="hero-title">TrashScan</h1>
+      <p class="hero-tagline">Smart metal detection for restaurant waste.</p>
 
-      <p class="hero-sub fade-in stagger-2">
-        A prototype smart trash can that detects metal utensils in restaurant
-        waste, retrieves them with a motorized pulley mechanism, and sanitizes
-        them under UV light. Built with Arduino, custom electronics, and a 3D
-        printed enclosure.
-      </p>
+      <div class="hero-grid">
+        <div class="hero-lead">
+          <p class="hero-sub">
+            A prototype smart trash can that detects metal utensils in restaurant
+            waste, retrieves them with a motorized pulley mechanism, and sanitizes
+            them under UV light. Built with Arduino, custom electronics, and a 3D
+            printed enclosure.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="assets/trashscan-design-report.pdf" target="_blank" rel="noopener">Read the design report</a>
+            <a class="btn btn-ghost" href="#system">See how it works</a>
+          </div>
+        </div>
 
-      <div class="hero-cta fade-in stagger-3">
-        <a class="btn btn-primary" href="assets/trashscan-design-report.pdf" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          Read the design report
-        </a>
-        <a class="btn btn-ghost" href="#system">See how it works</a>
-      </div>
-
-      <div class="hero-stats fade-in stagger-4">
-        <div class="stat"><strong>0.9 mm</strong><span>Enameled copper</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><strong>5 reads</strong><span>Before confirming</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><strong>3D printed</strong><span>Custom enclosure</span></div>
+        <div class="hero-diagram">
+          <div class="diagram-card">
+            <div class="diagram-head" aria-hidden="true">
+              <span>Fig. 01</span>
+              <span>Detection pipeline</span>
+            </div>
+            <div class="diagram-node diagram-node-1">
+              <span class="diagram-icon" aria-hidden="true">01</span>
+              <div class="diagram-text">
+                <strong>Induction loop</strong>
+                <span>0.9 mm enameled copper</span>
+              </div>
+            </div>
+            <span class="diagram-arrow" aria-hidden="true"></span>
+            <div class="diagram-node diagram-node-2">
+              <span class="diagram-icon" aria-hidden="true">02</span>
+              <div class="diagram-text">
+                <strong>Arduino firmware</strong>
+                <span>5 reads over 500 ms</span>
+              </div>
+            </div>
+            <span class="diagram-arrow" aria-hidden="true"></span>
+            <div class="diagram-node diagram-node-3">
+              <span class="diagram-icon" aria-hidden="true">03</span>
+              <div class="diagram-text">
+                <strong>Pulley retrieval</strong>
+                <span>Block &amp; tackle stepper</span>
+              </div>
+            </div>
+            <span class="diagram-arrow" aria-hidden="true"></span>
+            <div class="diagram-node diagram-node-4">
+              <span class="diagram-icon" aria-hidden="true">04</span>
+              <div class="diagram-text">
+                <strong>UV sanitization</strong>
+                <span>Disinfect the recovered item</span>
+              </div>
+            </div>
+          </div>
+          <p class="diagram-caption">The TrashScan pipeline from detection to sanitization.</p>
+        </div>
       </div>
     </div>
 
-    <div class="hero-diagram fade-in stagger-5">
-      <div class="diagram-card">
-        <div class="diagram-node diagram-node-1">
-          <div class="diagram-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
-          </div>
-          <div class="diagram-text">
-            <strong>Induction loop</strong>
-            <span>0.9 mm enameled copper</span>
-          </div>
-        </div>
-
-        <div class="diagram-arrow">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-        </div>
-
-        <div class="diagram-node diagram-node-2">
-          <div class="diagram-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
-          </div>
-          <div class="diagram-text">
-            <strong>Arduino firmware</strong>
-            <span>5 reads over 500 ms</span>
-          </div>
-        </div>
-
-        <div class="diagram-arrow">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-        </div>
-
-        <div class="diagram-node diagram-node-3">
-          <div class="diagram-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/></svg>
-          </div>
-          <div class="diagram-text">
-            <strong>Pulley retrieval</strong>
-            <span>Block &amp; tackle stepper</span>
-          </div>
-        </div>
-
-        <div class="diagram-arrow">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-        </div>
-
-        <div class="diagram-node diagram-node-4">
-          <div class="diagram-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          </div>
-          <div class="diagram-text">
-            <strong>UV sanitization</strong>
-            <span>Disinfect the recovered item</span>
-          </div>
-        </div>
+    <div class="hero-stats">
+      <div class="container hero-stats-inner">
+        <div class="stat"><strong>0.9 mm</strong><span>Enameled copper</span></div>
+        <div class="stat"><strong>5 reads</strong><span>Before confirming</span></div>
+        <div class="stat"><strong>3D printed</strong><span>Custom enclosure</span></div>
       </div>
-      <p class="diagram-caption">The TrashScan pipeline from detection to sanitization.</p>
     </div>
   </header>
 
   <!-- Overview -->
   <section id="overview" class="section section-dark">
-    <div class="container container-narrow">
+    <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">The problem</span>
+        <span class="eyebrow">Sec. 01 / The problem</span>
         <h2>Thousands of forks. Thrown out every day.</h2>
       </div>
 
-      <div class="overview-prose reveal">
-        <p>
+      <div class="overview-prose">
+        <p class="reveal">
           Restaurants discard reusable metal utensils with food waste every shift, losing real money to
           replacement costs and inventory turnover. Every fork that ends up in landfill is also raw
           material, manufacturing, and transport energy that can't be recovered. And buried inside black
           trash bags, those same utensils cut the workers who handle them downstream.
         </p>
-        <p>
+        <p class="reveal">
           TrashScan catches metal at the source, before it leaves the bin.
         </p>
       </div>
@@ -168,7 +155,7 @@
   <section id="system" class="section">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">The solution</span>
+        <span class="eyebrow">Sec. 02 / The solution</span>
         <h2>Detect. Retrieve. Sanitize.</h2>
         <p>TrashScan watches the waste stream using an induction loop, lifts recovered metal out with a motorized pulley, and disinfects it under UV light before it is returned to circulation.</p>
       </div>
@@ -177,21 +164,25 @@
         <span class="pipeline-line-track" aria-hidden="true"></span>
         <div class="pipe-step reveal">
           <div class="pipe-num">01</div>
+          <span class="pipe-tag" aria-hidden="true">Spec / Input</span>
           <h3>Sense</h3>
           <p>A copper induction loop made from 0.9 mm enameled wire generates an alternating magnetic field. Metal entering the field induces eddy currents, shifting the voltage decay that the Arduino reads.</p>
         </div>
         <div class="pipe-step reveal">
           <div class="pipe-num">02</div>
+          <span class="pipe-tag" aria-hidden="true">Spec / Logic</span>
           <h3>Confirm</h3>
           <p>Firmware requires <strong>5 consecutive positive readings</strong> spaced <strong>500 ms apart</strong> before acting. This multi-read window kills the false positives that plagued early tests.</p>
         </div>
         <div class="pipe-step reveal">
           <div class="pipe-num">03</div>
+          <span class="pipe-tag" aria-hidden="true">Spec / Drive</span>
           <h3>Retrieve</h3>
           <p>A stepper motor pulls a magnet through a block-and-tackle pulley setup. The pulley halves the force required, letting a small motor reliably lift the recovered item.</p>
         </div>
         <div class="pipe-step reveal">
           <div class="pipe-num">04</div>
+          <span class="pipe-tag" aria-hidden="true">Spec / Output</span>
           <h3>Sanitize</h3>
           <p>Once the magnet returns with its load, UV lights switch on to disinfect both the hook and the recovered item before the cycle resets.</p>
         </div>
@@ -199,55 +190,79 @@
     </div>
   </section>
 
-  <!-- Tech stack -->
+  <!-- Tech ledger -->
   <section class="section section-dark">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">Under the hood</span>
+        <span class="eyebrow">Sec. 03 / Under the hood</span>
         <h2>Hardware and firmware.</h2>
         <p>Everything that makes TrashScan tick.</p>
       </div>
 
-      <div class="tech-grid">
-        <div class="tech reveal">
-          <span class="tech-label">Microcontroller</span>
-          <h3>Arduino</h3>
-          <p>Open-source board running custom C firmware. Controls detection, motor cycles, UV lights, and manual override.</p>
+      <div class="tech-ledger">
+        <div class="tech-row reveal">
+          <span class="tech-index">01</span>
+          <div class="tech-term">
+            <span class="tech-label">Microcontroller</span>
+            <h3>Arduino</h3>
+          </div>
+          <p class="tech-def">Open-source board running custom C firmware. Controls detection, motor cycles, UV lights, and manual override.</p>
         </div>
-        <div class="tech reveal">
-          <span class="tech-label">Sensor</span>
-          <h3>Copper induction loop</h3>
-          <p>Hand-wound with 0.9 mm enameled copper wire. Replaced an earlier 0.5 mm attempt that revealed a wiring fault.</p>
+        <div class="tech-row reveal">
+          <span class="tech-index">02</span>
+          <div class="tech-term">
+            <span class="tech-label">Sensor</span>
+            <h3>Copper induction loop</h3>
+          </div>
+          <p class="tech-def">Hand-wound with 0.9 mm enameled copper wire. Replaced an earlier 0.5 mm attempt that revealed a wiring fault.</p>
         </div>
-        <div class="tech reveal">
-          <span class="tech-label">Detection principle</span>
-          <h3>Eddy-current voltage decay</h3>
-          <p>Faraday's law of induction. When metal enters the field, induced eddy currents shift the decay profile of the sensor signal.</p>
+        <div class="tech-row reveal">
+          <span class="tech-index">03</span>
+          <div class="tech-term">
+            <span class="tech-label">Detection principle</span>
+            <h3>Eddy-current voltage decay</h3>
+          </div>
+          <p class="tech-def">Faraday's law of induction. When metal enters the field, induced eddy currents shift the decay profile of the sensor signal.</p>
         </div>
-        <div class="tech reveal">
-          <span class="tech-label">Actuator</span>
-          <h3>Stepper motor + pulley</h3>
-          <p>Simple block-and-tackle mechanical configuration that halves the lifting force required from the motor.</p>
+        <div class="tech-row reveal">
+          <span class="tech-index">04</span>
+          <div class="tech-term">
+            <span class="tech-label">Actuator</span>
+            <h3>Stepper motor + pulley</h3>
+          </div>
+          <p class="tech-def">Simple block-and-tackle mechanical configuration that halves the lifting force required from the motor.</p>
         </div>
-        <div class="tech reveal">
-          <span class="tech-label">Sanitization</span>
-          <h3>UV light</h3>
-          <p>Activates automatically when the magnet returns to the home position carrying a retrieved item.</p>
+        <div class="tech-row reveal">
+          <span class="tech-index">05</span>
+          <div class="tech-term">
+            <span class="tech-label">Sanitization</span>
+            <h3>UV light</h3>
+          </div>
+          <p class="tech-def">Activates automatically when the magnet returns to the home position carrying a retrieved item.</p>
         </div>
-        <div class="tech reveal">
-          <span class="tech-label">User override</span>
-          <h3>Button reset</h3>
-          <p>Operator confirms retrieval before detection resumes. Solved the endless-loop problem of re-triggering on metal already on the pulley.</p>
+        <div class="tech-row reveal">
+          <span class="tech-index">06</span>
+          <div class="tech-term">
+            <span class="tech-label">User override</span>
+            <h3>Button reset</h3>
+          </div>
+          <p class="tech-def">Operator confirms retrieval before detection resumes. Solved the endless-loop problem of re-triggering on metal already on the pulley.</p>
         </div>
-        <div class="tech reveal">
-          <span class="tech-label">Enclosure</span>
-          <h3>Custom 3D print</h3>
-          <p>All components housed in a tailored printed case that keeps the wiring tidy and the device presentable.</p>
+        <div class="tech-row reveal">
+          <span class="tech-index">07</span>
+          <div class="tech-term">
+            <span class="tech-label">Enclosure</span>
+            <h3>Custom 3D print</h3>
+          </div>
+          <p class="tech-def">All components housed in a tailored printed case that keeps the wiring tidy and the device presentable.</p>
         </div>
-        <div class="tech reveal">
-          <span class="tech-label">Indicators</span>
-          <h3>LED feedback</h3>
-          <p>Real-time status lights tell the operator when the system is idle, confirming a read, retrieving, or sanitizing.</p>
+        <div class="tech-row reveal">
+          <span class="tech-index">08</span>
+          <div class="tech-term">
+            <span class="tech-label">Indicators</span>
+            <h3>LED feedback</h3>
+          </div>
+          <p class="tech-def">Real-time status lights tell the operator when the system is idle, confirming a read, retrieving, or sanitizing.</p>
         </div>
       </div>
     </div>
@@ -256,10 +271,13 @@
   <!-- Firmware deep dive -->
   <section id="firmware" class="section">
     <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Sec. 04 / Firmware logic</span>
+        <h2>Five reads before I believe you.</h2>
+      </div>
+
       <div class="firmware-grid">
         <div class="firmware-text reveal">
-          <span class="eyebrow">Firmware logic</span>
-          <h2>Five reads before I believe you.</h2>
           <p>Early testing showed that a single positive reading from the induction loop was not trustworthy. Ambient noise, transient electrical fluctuations, and nearby metal all caused false positives.</p>
           <p>To reject that noise, the Arduino firmware runs a simple counter algorithm: it takes a fresh reading every 500 ms, and only confirms metal presence after <strong>five consecutive positive reads</strong>. Miss one, and the counter resets to zero.</p>
           <p>After detection, the system hands control to a small state machine that fires the stepper motor, runs the retrieval cycle, activates UV, then enters an override hold state until the operator presses the button to continue.</p>
@@ -267,7 +285,7 @@
 
         <div class="firmware-code reveal">
           <div class="code-header">
-            <span class="code-dots"><i></i><i></i><i></i></span>
+            <span class="code-lang" aria-hidden="true">Src / Arduino C</span>
             <span class="code-title">trashscan.ino</span>
           </div>
 <pre><code><span class="c-com">// Confirm metal only after 5 valid reads</span>
@@ -309,15 +327,13 @@
   <section id="report" class="section section-dark">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">Documentation</span>
+        <span class="eyebrow">Sec. 05 / Documentation</span>
         <h2>Everything, in one report.</h2>
         <p>The full 17-page design document covering schematics, calculations, iterative testing notes, failure mode analysis, and references.</p>
       </div>
 
       <div class="report-cta reveal">
-        <div class="report-cta-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
+        <span class="report-doc" aria-hidden="true">Doc. 17 pp / PDF</span>
         <div class="report-cta-text">
           <h3>TrashScan Design Report</h3>
           <p>17 pages. Schematics, firmware logic, calculations, test results, failure modes, and references.</p>
@@ -331,51 +347,55 @@
   <section class="section">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">Iteration</span>
+        <span class="eyebrow">Sec. 06 / Iteration</span>
         <h2>What went wrong, and what we did about it.</h2>
         <p>Every failure mode from early testing, paired with the fix that shipped in the final prototype.</p>
       </div>
 
-      <div class="challenge-grid">
+      <div class="challenge-ledger">
         <div class="challenge reveal">
-          <div class="challenge-row">
+          <span class="challenge-index">01</span>
+          <div class="challenge-col">
             <span class="chall-label chall-label-problem">Problem</span>
             <p>Induction loop threw false readings from ambient noise and nearby metal during testing.</p>
           </div>
-          <div class="challenge-row">
+          <div class="challenge-col">
             <span class="chall-label chall-label-fix">Fix</span>
             <p>Added a counter that requires 5 positive reads spaced 500 ms apart before acting.</p>
           </div>
         </div>
 
         <div class="challenge reveal">
-          <div class="challenge-row">
+          <span class="challenge-index">02</span>
+          <div class="challenge-col">
             <span class="chall-label chall-label-problem">Problem</span>
             <p>Early 0.5 mm wire version produced no sensor output at all.</p>
           </div>
-          <div class="challenge-row">
+          <div class="challenge-col">
             <span class="chall-label chall-label-fix">Fix</span>
             <p>Isolated a wiring issue, rebuilt the loop with 0.9 mm enameled copper wire that gave reliable readings.</p>
           </div>
         </div>
 
         <div class="challenge reveal">
-          <div class="challenge-row">
+          <span class="challenge-index">03</span>
+          <div class="challenge-col">
             <span class="chall-label chall-label-problem">Problem</span>
             <p>The stepper motor did not have enough torque to lift items directly.</p>
           </div>
-          <div class="challenge-row">
+          <div class="challenge-col">
             <span class="chall-label chall-label-fix">Fix</span>
             <p>Switched to a block-and-tackle pulley setup, which halved the lifting force required.</p>
           </div>
         </div>
 
         <div class="challenge reveal">
-          <div class="challenge-row">
+          <span class="challenge-index">04</span>
+          <div class="challenge-col">
             <span class="chall-label chall-label-problem">Problem</span>
             <p>Sensor kept re-detecting metal that was already retrieved, triggering endless cycles.</p>
           </div>
-          <div class="challenge-row">
+          <div class="challenge-col">
             <span class="chall-label chall-label-fix">Fix</span>
             <p>Added a manual button override so detection only resumes after the operator confirms retrieval.</p>
           </div>
@@ -386,54 +406,44 @@
 
   <!-- My role -->
   <section class="section section-dark">
-    <div class="container container-narrow">
+    <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">My role</span>
+        <span class="eyebrow">Sec. 07 / My role</span>
         <h2>What I worked on.</h2>
       </div>
 
       <ul class="role-list reveal">
         <li>
-          <div class="role-check">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div>
+          <span class="role-num" aria-hidden="true">01</span>
+          <div class="role-body">
             <strong>Assembled the electronic components and wiring</strong>
             <p>Bench-built the sensor loop, motor driver, UV circuit, and LED feedback lines on breadboard before soldering the final version.</p>
           </div>
         </li>
         <li>
-          <div class="role-check">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div>
+          <span class="role-num" aria-hidden="true">02</span>
+          <div class="role-body">
             <strong>Developed the Arduino firmware</strong>
             <p>Wrote the detection loop, counter confirmation, motor cycle, UV activation, and override handshake in C on the Arduino platform.</p>
           </div>
         </li>
         <li>
-          <div class="role-check">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div>
+          <span class="role-num" aria-hidden="true">03</span>
+          <div class="role-body">
             <strong>Created a counter algorithm to reduce false positives</strong>
             <p>Five-reads-over-500-ms confirmation window replaced a single-shot read that was too noisy to be trusted.</p>
           </div>
         </li>
         <li>
-          <div class="role-check">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div>
+          <span class="role-num" aria-hidden="true">04</span>
+          <div class="role-body">
             <strong>Helped integrate electronics into the 3D-printed enclosure</strong>
             <p>Contributed to the internal layout and wiring routing inside the custom printed case.</p>
           </div>
         </li>
         <li>
-          <div class="role-check">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div>
+          <span class="role-num" aria-hidden="true">05</span>
+          <div class="role-body">
             <strong>Tested, calibrated, and troubleshot the sensor and motor systems</strong>
             <p>Iterative bench sessions to chase down false readings, stepper torque limits, and signal interference.</p>
           </div>
@@ -441,22 +451,17 @@
       </ul>
 
       <div class="outcome reveal">
-        <div class="outcome-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div>
-          <h3>Outcome</h3>
-          <p>Advanced the project from concept to functional prototype. Improved reliability through iterative calibration and firmware updates. Demonstrated full hardware-software integration in an embedded systems context.</p>
-        </div>
+        <h3>Outcome</h3>
+        <p>Advanced the project from concept to functional prototype. Improved reliability through iterative calibration and firmware updates. Demonstrated full hardware-software integration in an embedded systems context.</p>
       </div>
     </div>
   </section>
 
   <!-- Team -->
   <section id="team" class="section">
-    <div class="container container-narrow">
+    <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">Team</span>
+        <span class="eyebrow">Sec. 08 / Team</span>
         <h2>Built together.</h2>
       </div>
       <p class="team-credit reveal">
@@ -471,14 +476,12 @@
   <section class="section cta-section">
     <div class="container">
       <div class="cta reveal">
-        <div class="cta-icon">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
+        <span class="eyebrow">Doc. TS-17 / Full report</span>
         <h2>Read the full design report.</h2>
         <p>17 pages of schematics, calculations, iterative test notes, failure-mode analysis, and references.</p>
         <div class="cta-row">
           <a class="btn btn-primary btn-large" href="assets/trashscan-design-report.pdf" target="_blank" rel="noopener">Open PDF report</a>
-          <a class="btn btn-ghost" href="../">Back to portfolio</a>
+          <a class="btn btn-ghost btn-large" href="../">Back to portfolio</a>
         </div>
       </div>
     </div>
@@ -492,7 +495,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="footer-brand-inner">
-            <span class="brand-mark">TS</span>
+            <span class="brand-mark" aria-hidden="true">TS</span>
             <span>TrashScan</span>
           </div>
           <p>A first-year engineering project at Northeastern University.</p>
@@ -520,10 +523,14 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
+  </div><!-- /#smooth-content -->
+  </div><!-- /#smooth-wrapper -->
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" integrity="sha384-P8VzCVnT9NBUkMrpcIZrJbA7EBjJvh/fJS6PmP+4nLIM284DtsImIv8D0fFjIkeh" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js" integrity="sha384-dd8lT3AimXbI347qlZzlijPa4qnSlgGxuTqK2HlcfvF5+aOIeddPdMFmFpypQPZN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" integrity="sha384-xb96EMJeax+NLXMC88ZBa1xAeAW+kn+horHh/zFlbMLG2UPWhMJJSlv7fi57hS+Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js" integrity="sha384-QsPhgdP78a1erQNT34dj/oyh7uPCXUnT/FkptUa/56LnSGsbTBmdiAOfB7j+8K4A" crossorigin="anonymous"></script>
   <script src="script.js"></script>
 </body>
 </html>

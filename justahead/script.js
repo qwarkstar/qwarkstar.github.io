@@ -5,74 +5,6 @@
 (function () {
   'use strict';
 
-  // ── Hero particle network (canvas 2D, ambient) ──
-  function initParticleNetwork(container, opts) {
-    if (!container) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const cfg = Object.assign({
-      color: '126, 177, 255', density: 35, maxDist: 130, speed: 0.25
-    }, opts || {});
-    const canvas = document.createElement('canvas');
-    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1;';
-    container.style.position = container.style.position || 'relative';
-    container.style.isolation = 'isolate';
-    container.prepend(canvas);
-    const ctx = canvas.getContext('2d');
-    let w = 0, h = 0, dpr = 1, particles = [], mouseX = -9999, mouseY = -9999;
-    function resize() {
-      dpr = Math.min(2, window.devicePixelRatio || 1);
-      const rect = container.getBoundingClientRect();
-      w = rect.width; h = rect.height;
-      canvas.width = w * dpr; canvas.height = h * dpr;
-      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.scale(dpr, dpr);
-      const N = Math.max(20, Math.min(80, Math.floor((w * cfg.density) / 1000)));
-      particles = [];
-      for (let i = 0; i < N; i++) particles.push({
-        x: Math.random() * w, y: Math.random() * h,
-        vx: (Math.random() - 0.5) * cfg.speed, vy: (Math.random() - 0.5) * cfg.speed,
-        r: Math.random() * 1.4 + 0.4
-      });
-    }
-    resize(); window.addEventListener('resize', resize);
-    container.addEventListener('mousemove', (e) => {
-      const r = container.getBoundingClientRect();
-      mouseX = e.clientX - r.left; mouseY = e.clientY - r.top;
-    });
-    container.addEventListener('mouseleave', () => { mouseX = -9999; mouseY = -9999; });
-    function draw() {
-      ctx.clearRect(0, 0, w, h);
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        const mdx = p.x - mouseX, mdy = p.y - mouseY;
-        const md = Math.sqrt(mdx * mdx + mdy * mdy);
-        if (md < 90 && md > 0) { p.vx += (mdx / md) * 0.04; p.vy += (mdy / md) * 0.04; }
-        p.vx *= 0.985; p.vy *= 0.985;
-        if (Math.abs(p.vx) < 0.05) p.vx += (Math.random() - 0.5) * 0.02;
-        if (Math.abs(p.vy) < 0.05) p.vy += (Math.random() - 0.5) * 0.02;
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0) { p.x = 0; p.vx *= -1; } if (p.x > w) { p.x = w; p.vx *= -1; }
-        if (p.y < 0) { p.y = 0; p.vy *= -1; } if (p.y > h) { p.y = h; p.vy *= -1; }
-        ctx.fillStyle = `rgba(${cfg.color}, 0.55)`;
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
-      }
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const a = particles[i], b = particles[j];
-          const dx = a.x - b.x, dy = a.y - b.y, d = Math.sqrt(dx * dx + dy * dy);
-          if (d < cfg.maxDist) {
-            ctx.strokeStyle = `rgba(${cfg.color}, ${0.18 * (1 - d / cfg.maxDist)})`;
-            ctx.lineWidth = 0.6;
-            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-          }
-        }
-      }
-      requestAnimationFrame(draw);
-    }
-    draw();
-  }
-  // Two-tone: blue base with a touch of green to match R·iving identity
-  initParticleNetwork(document.querySelector('.hero'), { color: '110, 200, 200' });
-
   // ── Nav: glass effect on scroll ──────────
   const nav = document.getElementById('nav');
   const SCROLL_THRESHOLD = 24;
@@ -234,7 +166,7 @@
   }
 
   // ── GSAP animations ──────────────────────
-  const gsapReady = typeof window.gsap !== 'undefined';
+  const gsapReady = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
   const reduceMo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (gsapReady && !reduceMo) {
@@ -266,7 +198,7 @@
           yPercent: 0,
           rotationX: 0,
           duration: 1.1,
-          ease: 'power3.out',
+          ease: 'power4.out',
           stagger: 0.07
         }, '-=0.35');
       } else if (heroTitle) {
@@ -311,7 +243,7 @@
           onEnter: () => gsap.to(split.words, {
             yPercent: 0,
             duration: 0.8,
-            ease: 'power3.out',
+            ease: 'power4.out',
             stagger: 0.05
           })
         });
@@ -382,156 +314,67 @@
       });
     });
 
-    // Gradient glint
-    document.querySelectorAll('.gradient').forEach(el => {
-      gsap.fromTo(el,
-        { '--shine': '-120%' },
-        {
-          '--shine': '220%',
-          duration: 1.4,
-          ease: 'power2.inOut',
-          repeat: -1,
-          repeatDelay: 4
-        }
-      );
-    });
-
-    // Background glow parallax
-    if (document.querySelector('.bg-glow')) {
-      gsap.set('.bg-glow', { xPercent: -50 });
-      gsap.to('.bg-glow', {
-        y: -240,
-        ease: 'none',
-        scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom top', scrub: true }
-      });
-    }
-    if (document.querySelector('.bg-glow-2')) {
-      gsap.to('.bg-glow-2', {
-        y: 180,
-        ease: 'none',
-        scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom top', scrub: true }
-      });
-    }
-
-    // Phone mockup parallax — drifts up and leans back as you scroll past the hero
+    // Phone mockup parallax — drifts up and leans back as you scroll past the hero.
+    // fromTo with immediateRender:false so the scrub never caches the entrance's
+    // mid-flight scale as its starting point.
     const phoneWrap = document.querySelector('.phone-wrap');
     if (phoneWrap) {
-      gsap.to(phoneWrap, {
-        y: -120,
-        rotation: 4,
-        scale: 0.96,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.hero',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1.2
+      gsap.fromTo(phoneWrap,
+        { y: 0, rotation: 0, scale: 1 },
+        {
+          y: -120,
+          rotation: 4,
+          scale: 0.96,
+          ease: 'none',
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1.2
+          }
         }
-      });
+      );
     }
 
-    // Gentle 3D card tilt + small Z-pop on hover
-    mm.add('(hover: hover) and (pointer: fine)', () => {
-      const tiltCards = document.querySelectorAll('.step, .feature, .audience, .faq-item');
-      tiltCards.forEach(card => {
-        const setRX = gsap.quickTo(card, 'rotationX', { duration: 0.5, ease: 'power2.out' });
-        const setRY = gsap.quickTo(card, 'rotationY', { duration: 0.5, ease: 'power2.out' });
-        card.style.transformPerspective = '1100px';
-        card.style.transformStyle = 'preserve-3d';
-        card.addEventListener('mouseenter', () => {
-          gsap.to(card, { z: 12, duration: 0.5, ease: 'power2.out' });
-        });
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width - 0.5;
-          const y = (e.clientY - rect.top) / rect.height - 0.5;
-          setRY(x * 5);
-          setRX(-y * 5);
-        });
-        card.addEventListener('mouseleave', () => {
-          gsap.to(card, { rotationX: 0, rotationY: 0, z: 0, duration: 0.7, ease: 'power3.out' });
-        });
-      });
-    });
-
-    // Pinned "How it works" — steps activate one-by-one on scroll (short pin)
+    // Pinned "How it works" — steps activate one-by-one on scroll (desktop only;
+    // the single-column mobile stack is taller than the viewport, so pinning it
+    // would hide steps below the fold)
     const howSection = document.querySelector('#how');
-    const howSteps = howSection ? howSection.querySelectorAll('.step') : [];
+    const howSteps = howSection ? gsap.utils.toArray(howSection.querySelectorAll('.step')) : [];
     if (howSteps.length) {
-      gsap.set(howSteps, { autoAlpha: 0.4, scale: 0.94, y: 0 });
-      const stepsTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: howSection,
-          start: 'top top',
-          end: '+=' + (howSteps.length * 140), // halved from 280 — much tighter pin
-          pin: true,
-          pinSpacing: true,
-          scrub: 0.5
+      const stepsTrack = howSection.querySelector('.steps-line-track');
+      mm.add('(min-width: 769px)', () => {
+        gsap.set(howSteps, { autoAlpha: 0.4, scale: 0.94, y: 0 });
+        const stepsTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: howSection,
+            start: 'top top',
+            end: '+=' + (howSteps.length * 140),
+            pin: true,
+            pinSpacing: true,
+            scrub: 0.5
+          }
+        });
+        howSteps.forEach((step, i) => {
+          stepsTl.to(step, { autoAlpha: 1, scale: 1, duration: 1, ease: 'power2.out' }, i);
+        });
+        // The track between the stations draws itself as the steps activate
+        if (stepsTrack) {
+          gsap.set(stepsTrack, { scaleX: 0, transformOrigin: '0% 50%' });
+          stepsTl.to(stepsTrack, { scaleX: 1, duration: howSteps.length, ease: 'none' }, 0);
         }
       });
-      howSteps.forEach((step, i) => {
-        stepsTl.to(step, { autoAlpha: 1, scale: 1, duration: 1, ease: 'power2.out' }, i);
-      });
-      // The track between the stations draws itself as the steps activate
-      const stepsTrack = howSection.querySelector('.steps-line-track');
-      if (stepsTrack) {
-        gsap.set(stepsTrack, { scaleX: 0, transformOrigin: '0% 50%' });
-        stepsTl.to(stepsTrack, { scaleX: 1, duration: howSteps.length, ease: 'none' }, 0);
-      }
-    }
-
-    // Magnetic nav links
-    mm.add('(hover: hover) and (pointer: fine)', () => {
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        const setX = gsap.quickTo(link, 'x', { duration: 0.4, ease: 'power3.out' });
-        const setY = gsap.quickTo(link, 'y', { duration: 0.4, ease: 'power3.out' });
-        link.addEventListener('mousemove', (e) => {
-          const r = link.getBoundingClientRect();
-          setX((e.clientX - r.left - r.width / 2) * 0.3);
-          setY((e.clientY - r.top - r.height / 2) * 0.3);
+      mm.add('(max-width: 768px)', () => {
+        gsap.set(howSteps, { autoAlpha: 0, y: 36 });
+        ScrollTrigger.batch(howSteps, {
+          start: 'top 88%',
+          onEnter: (els) => gsap.to(els, {
+            autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power4.out', overwrite: true
+          })
         });
-        link.addEventListener('mouseleave', () => {
-          gsap.to(link, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
-        });
-      });
-    });
-
-    // Hero spotlight (green-tinted to match R·iving)
-    const heroEl = document.querySelector('.hero');
-    if (heroEl) {
-      const spotlight = document.createElement('div');
-      spotlight.className = 'hero-spotlight';
-      spotlight.style.cssText = 'position:absolute;inset:0;pointer-events:none;z-index:0;opacity:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(110,231,183,0.16), transparent 60%);transition:opacity 0.5s ease;mix-blend-mode:screen;';
-      heroEl.appendChild(spotlight);
-      heroEl.addEventListener('mouseenter', () => { spotlight.style.opacity = '1'; });
-      heroEl.addEventListener('mouseleave', () => { spotlight.style.opacity = '0'; });
-      heroEl.addEventListener('mousemove', (e) => {
-        const r = heroEl.getBoundingClientRect();
-        spotlight.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-        spotlight.style.setProperty('--my', (e.clientY - r.top) + 'px');
       });
     }
-
-    // Card icon spring-pop on card hover
-    mm.add('(hover: hover) and (pointer: fine)', () => {
-      const iconHostMap = [
-        { card: '.step',     icon: '.step-icon'     },
-        { card: '.feature',  icon: '.feature-icon'  },
-        { card: '.audience', icon: '.audience-icon' }
-      ];
-      iconHostMap.forEach(({ card, icon }) => {
-        document.querySelectorAll(card).forEach(host => {
-          const ic = host.querySelector(icon);
-          if (!ic) return;
-          host.addEventListener('mouseenter', () => {
-            gsap.to(ic, { y: -6, scale: 1.08, duration: 0.45, ease: 'back.out(2.4)' });
-          });
-          host.addEventListener('mouseleave', () => {
-            gsap.to(ic, { y: 0, scale: 1, duration: 0.55, ease: 'power2.out' });
-          });
-        });
-      });
-    });
 
     // Route-marquee speed reactive to scroll velocity
     const marqueeTracks = document.querySelectorAll('.route-marquee-track');
@@ -608,6 +451,10 @@
         onToggle: (self) => (self.isActive ? demoTl.play() : demoTl.pause())
       });
     }
+
+    // Re-order triggers by document position and recalc after setup
+    ScrollTrigger.sort();
+    ScrollTrigger.refresh();
 
     };
     if (document.fonts && document.fonts.ready) {

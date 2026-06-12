@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Julian Rzezak · Developer & CS/CE Student</title>
   <meta name="description" content="Julian Rzezak. Computer Engineering & Computer Science student at Northeastern University. Building R·iving, embedded firmware, and more.">
-  <meta name="theme-color" content="#0A84FF">
+  <meta name="theme-color" content="#05070d">
 
   <meta property="og:title" content="Julian Rzezak · Developer & Engineer">
   <meta property="og:description" content="CS/CE student at Northeastern building apps, firmware, and websites.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://qwarkstar.github.io/">
 
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f93ff'/%3E%3Ctext x='32' y='43' font-family='Arial, Helvetica, sans-serif' font-size='27' font-weight='800' fill='%23ffffff' text-anchor='middle'%3EJR%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -20,8 +21,6 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="bg-glow" aria-hidden="true"></div>
-  <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <!-- Nav -->
@@ -31,10 +30,12 @@
         <span class="brand-monogram">JR</span>
         <span>Julian Rzezak</span>
       </a>
+      <span class="nav-clock" id="navClock" aria-hidden="true">BOS / MIA <b>--:--</b></span>
       <div class="nav-links" id="navLinks">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#education">Education</a>
+        <a href="#profile">Profile</a>
+        <a href="#work">Work</a>
+        <a href="#index">Index</a>
+        <a href="#record">Record</a>
         <a href="#contact">Contact</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
@@ -43,382 +44,348 @@
     </div>
   </nav>
 
+  <div id="smooth-wrapper">
+  <div id="smooth-content">
+
   <main id="main">
-  <!-- Hero -->
+
+  <!-- ── HERO ─────────────────────────────────────────── -->
   <header class="hero">
-    <div class="hero-grid">
-      <div class="hero-meta fade-in" aria-hidden="true">
-        <span class="hero-meta-line">N 42°20'24"</span>
-        <span class="hero-meta-line">W 71°05'23"</span>
-        <span class="hero-meta-divider"></span>
-        <span class="hero-meta-line">BOSTON / MIAMI</span>
-        <span class="hero-meta-line">v.2026</span>
-      </div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-frame" aria-hidden="true">
+      <span class="mark mark--tl"></span>
+      <span class="mark mark--tr"></span>
+      <span class="mark mark--bl"></span>
+      <span class="mark mark--br"></span>
+    </div>
 
-      <div class="hero-inner">
-        <div class="badge fade-in">
-          <span class="badge-dot"></span>
-          <span>Available for collaboration</span>
-        </div>
+    <div class="hero-anno-row" aria-hidden="true">
+      <span class="anno hero-meta-line">Portfolio / V.6 / 2026</span>
+      <span class="anno hero-meta-line">N 42&deg;20'24" &middot; W 71&deg;05'23"</span>
+      <span class="anno hero-meta-line">CE + CS &middot; Northeastern</span>
+    </div>
 
-        <h1 class="hero-title fade-in stagger-1">
-          <span class="hero-line">Hi, I'm</span>
-          <span class="hero-line"><span class="gradient">Julian</span>.</span>
-        </h1>
+    <h1 class="hero-name">
+      <span class="line line-1">Julian</span>
+      <span class="line line-2">Rzezak</span>
+    </h1>
 
-        <p class="hero-sub fade-in stagger-2">
-          Computer Engineering &amp; Computer Science student at Northeastern University.
-          I build iOS apps, embedded systems, and web experiences that feel considered.
-        </p>
-
-        <div class="hero-cta fade-in stagger-3">
-          <a class="btn btn-primary" href="#projects">
-            See my work
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-          </a>
-          <a class="btn btn-ghost" href="#contact">
-            Get in touch
-          </a>
-        </div>
-
-        <div class="social-row fade-in stagger-4">
-          <a class="social-link" href="https://github.com/qwarkstar" target="_blank" rel="noopener" aria-label="GitHub">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-            <span>GitHub</span>
-          </a>
-          <a class="social-link" href="https://www.linkedin.com/in/julian-rzezak-07508029b" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            <span>LinkedIn</span>
-          </a>
-          <a class="social-link" href="mailto:julian.rzezak@gmail.com" aria-label="Email">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <span>Email</span>
-          </a>
+    <div class="hero-base">
+      <p class="hero-lede">
+        Computer Engineering &amp; Computer Science student at Northeastern University.
+        I build <strong>iOS apps</strong>, <strong>embedded systems</strong>, and web
+        experiences that feel considered.
+      </p>
+      <div class="hero-side">
+        <span class="hero-status"><i></i>Available for collaboration</span>
+        <div class="hero-ctas">
+          <a class="u-link" href="#work">See the work <span class="arr">&#8599;</span></a>
+          <a class="u-link" href="#contact">Get in touch <span class="arr">&#8599;</span></a>
         </div>
       </div>
+    </div>
 
-      <div class="hero-scrollcue fade-in" aria-hidden="true">
-        <span>SCROLL</span>
-        <span class="hero-scrollcue-line"></span>
-      </div>
+    <div class="hero-scrollcue" aria-hidden="true">
+      <span>Scroll</span>
+      <span class="hero-scrollcue-line"></span>
     </div>
   </header>
 
-  <!-- Skill marquee — eight things I'm actually good at, looped twice for the marquee -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Swift</span><span class="marquee-dot">●</span>
-      <span>React Native</span><span class="marquee-dot">●</span>
-      <span>TypeScript</span><span class="marquee-dot">●</span>
-      <span>Embedded C</span><span class="marquee-dot">●</span>
-      <span>ARM Cortex</span><span class="marquee-dot">●</span>
-      <span>Geofencing</span><span class="marquee-dot">●</span>
-      <span>PCB Design</span><span class="marquee-dot">●</span>
-      <span>Arduino</span><span class="marquee-dot">●</span>
-      <span>Swift</span><span class="marquee-dot">●</span>
-      <span>React Native</span><span class="marquee-dot">●</span>
-      <span>TypeScript</span><span class="marquee-dot">●</span>
-      <span>Embedded C</span><span class="marquee-dot">●</span>
-      <span>ARM Cortex</span><span class="marquee-dot">●</span>
-      <span>Geofencing</span><span class="marquee-dot">●</span>
-      <span>PCB Design</span><span class="marquee-dot">●</span>
-      <span>Arduino</span><span class="marquee-dot">●</span>
+  <!-- ── Spec strip ───────────────────────────────────── -->
+  <div class="specstrip" aria-hidden="true">
+    <div class="specstrip-track">
+      <span>Swift</span><span class="sep">&#9670;</span>
+      <span>React Native</span><span class="sep">&#9670;</span>
+      <span>TypeScript</span><span class="sep">&#9670;</span>
+      <span>Embedded C</span><span class="sep">&#9670;</span>
+      <span>ARM Cortex</span><span class="sep">&#9670;</span>
+      <span>Geofencing</span><span class="sep">&#9670;</span>
+      <span>PCB Design</span><span class="sep">&#9670;</span>
+      <span>Arduino</span><span class="sep">&#9670;</span>
+      <span>Swift</span><span class="sep">&#9670;</span>
+      <span>React Native</span><span class="sep">&#9670;</span>
+      <span>TypeScript</span><span class="sep">&#9670;</span>
+      <span>Embedded C</span><span class="sep">&#9670;</span>
+      <span>ARM Cortex</span><span class="sep">&#9670;</span>
+      <span>Geofencing</span><span class="sep">&#9670;</span>
+      <span>PCB Design</span><span class="sep">&#9670;</span>
+      <span>Arduino</span><span class="sep">&#9670;</span>
     </div>
   </div>
 
-  <!-- About -->
-  <section id="about" class="section" data-index="01">
-    <div class="container container-narrow">
-      <div class="section-head reveal">
-        <span class="eyebrow">About</span>
-        <h2>A bit about me.</h2>
-      </div>
-      <div class="about-text reveal">
-        <p>I'm a second-year Computer Engineering &amp; Computer Science student at Northeastern University, splitting my time between writing iOS apps, designing embedded systems, and shipping little things that make life a bit calmer.</p>
-        <p>My favorite projects start with a problem I keep running into, like falling asleep on the train and missing my stop, and end with something I actually use every day. I care about polish, restraint, and making technology feel calm instead of noisy.</p>
-        <p>When I'm not coding, you'll find me working on embedded design for the <a href="https://northeastern-electric-racing.com" target="_blank" rel="noopener">Northeastern Electric Racing</a> club or tinkering with hardware on my desk.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured projects -->
-  <section id="projects" class="section section-dark" data-index="02">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Featured projects</span>
-        <h2>What I'm building.</h2>
-        <p>Two projects I've poured real time into. Software on the left, hardware on the right.</p>
+  <!-- ── 01 PROFILE ───────────────────────────────────── -->
+  <section id="profile" class="sheet">
+    <span class="ghost-no" aria-hidden="true">01</span>
+    <div class="wrap">
+      <div class="sheet-head">
+        <span class="sheet-no">01</span>
+        <span class="sheet-name">Profile</span>
+        <span class="sheet-rule" aria-hidden="true"></span>
+        <span class="sheet-fig">Fig. A / Who</span>
       </div>
 
-      <!-- R·iving featured card -->
-      <a href="./justahead/" class="featured-card reveal" aria-label="R·iving — visit project page">
-        <div class="featured-content">
-          <div class="featured-meta">
-            <span class="featured-chip">iOS · React Native · Expo</span>
-            <span class="featured-status">Available on the App Store</span>
-          </div>
-          <h3>R·iving. The travel alarm for commuters.</h3>
-          <p>Drop a pin on the map or search for any real transit stop. Lock your phone, fall asleep, and R·iving watches your GPS to wake you up at exactly the right moment. Built end-to-end from the icon to the ad banner. React Native, TypeScript, background geofencing, Apple Maps integration, OpenStreetMap transit data.</p>
-          <div class="featured-links">
-            <span class="featured-cta">Visit site →</span>
+      <div class="profile-grid">
+        <div class="profile-rail">
+          <span class="anno"><b>Base</b> &middot; Boston / Miami</span>
+          <span class="anno"><b>Focus</b> &middot; iOS + Embedded</span>
+          <span class="anno"><b>Year</b> &middot; 2nd, CE + CS</span>
+          <span class="anno"><b>Club</b> &middot; NER Electric Racing</span>
+        </div>
+        <div class="profile-copy">
+          <p>I'm a second-year Computer Engineering &amp; Computer Science student at <strong>Northeastern University</strong>, splitting my time between writing iOS apps, designing embedded systems, and shipping little things that make life a bit calmer.</p>
+          <p>My favorite projects start with a problem I keep running into, like falling asleep on the train and missing my stop, and end with something I actually use every day. I care about polish, restraint, and making technology feel calm instead of noisy.</p>
+          <p>When I'm not coding, you'll find me working on embedded design for the <a href="https://northeastern-electric-racing.com" target="_blank" rel="noopener">Northeastern Electric Racing</a> club or tinkering with hardware on my desk.</p>
+          <div class="profile-now">
+            <span class="anno"><b>Now</b> &middot; Shipping R&middot;iving updates</span>
+            <span class="anno"><b>Also</b> &middot; Launchpad firmware @ NER</span>
           </div>
         </div>
-        <div class="featured-visual">
-          <img src="./justahead/assets/icon.png" alt="R·iving app icon" class="featured-icon">
-          <div class="featured-tags">
-            <span>React Native</span>
-            <span>TypeScript</span>
-            <span>Expo SDK 55</span>
-            <span>Geofencing</span>
-            <span>Apple Maps</span>
-            <span>OpenStreetMap</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- TrashScan featured card (compact) -->
-      <a href="./trashscan/" class="featured-card featured-card-green reveal" aria-label="TrashScan — visit project page">
-        <div class="featured-content">
-          <div class="featured-meta">
-            <span class="featured-chip featured-chip-green">Embedded · Arduino · 2025</span>
-            <span class="featured-status featured-status-alt">First-year project</span>
-          </div>
-          <h3>TrashScan. Smart metal detection for restaurant waste.</h3>
-          <p>Prototype smart trash can that detects, retrieves, and sanitizes metal utensils mistakenly thrown away in restaurants. Built with Arduino firmware, a copper induction loop, a block-and-tackle pulley, and a custom 3D-printed enclosure. Dedicated case study site with photos and the full design report.</p>
-          <div class="featured-links">
-            <span class="featured-cta featured-cta-green">Visit TrashScan →</span>
-          </div>
-        </div>
-        <div class="featured-visual">
-          <div class="case-visual-mini" aria-hidden="true">
-            <svg width="68" height="68" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 6h18"/>
-              <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-              <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
-              <line x1="10" y1="11" x2="10" y2="17"/>
-              <line x1="14" y1="11" x2="14" y2="17"/>
-            </svg>
-          </div>
-          <div class="featured-tags featured-tags-green">
-            <span>Arduino</span>
-            <span>C / C++</span>
-            <span>Induction sensing</span>
-            <span>Stepper motor</span>
-            <span>UV sanitization</span>
-            <span>3D printing</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Other projects grid -->
-      <h3 class="subhead reveal">Other projects</h3>
-
-      <div class="projects-grid">
-        <a href="https://electricracing.northeastern.edu/" target="_blank" rel="noopener" class="project-card reveal">
-          <div class="project-icon project-icon-blue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
-          </div>
-          <h4>NER Launchpad Firmware</h4>
-          <p>Embedded firmware for the Northeastern Electric Racing Launchpad project. Low-level C on ARM Cortex microcontrollers.</p>
-          <div class="project-tags">
-            <span>C</span>
-            <span>Embedded</span>
-            <span>ARM</span>
-          </div>
-        </a>
-
-        <a href="https://github.com/qwarkstar" target="_blank" rel="noopener" class="project-card reveal project-card-more">
-          <div class="project-icon project-icon-purple">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <h4>More on GitHub</h4>
-          <p>Small experiments, prototypes, and work-in-progress projects live on my GitHub. Always something new to poke at.</p>
-          <div class="project-tags">
-            <span>@qwarkstar</span>
-          </div>
-        </a>
       </div>
     </div>
   </section>
 
-  <!-- Education -->
-  <section id="education" class="section" data-index="03">
-    <div class="container container-narrow">
-      <div class="section-head reveal">
-        <span class="eyebrow">Education</span>
-        <h2>Where I learn.</h2>
+  <!-- ── 02 WORK: stacked panels ──────────────────────── -->
+  <section id="work" class="sheet" style="padding-bottom: 0;">
+    <span class="ghost-no" aria-hidden="true">02</span>
+    <div class="wrap">
+      <div class="sheet-head">
+        <span class="sheet-no">02</span>
+        <span class="sheet-name">Selected work</span>
+        <span class="sheet-rule" aria-hidden="true"></span>
+        <span class="sheet-fig">Fig. B / Shipped</span>
       </div>
+    </div>
 
-      <article class="edu-card reveal">
-        <div class="edu-logo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        </div>
-        <div class="edu-body">
-          <div class="edu-head">
-            <h3>Northeastern University</h3>
-            <span class="edu-date">May 2025 to May 2028</span>
+    <div class="work-stack">
+
+      <!-- Panel 1: R·iving -->
+      <article class="work-panel panel-riving">
+        <div class="panel-bg blueprint" aria-hidden="true"></div>
+        <div class="panel-inner">
+          <div class="panel-text">
+            <div class="panel-meta">
+              <span class="anno anno-accent">Work 02.1</span>
+              <span class="anno"><b>iOS &middot; React Native &middot; Expo</b></span>
+              <span class="anno">Live on the App Store</span>
+            </div>
+            <h3 class="panel-title">R<span class="dot">&middot;</span>iving</h3>
+            <p class="panel-tagline">The travel alarm for commuters.</p>
+            <p class="panel-desc">
+              Drop a pin on the map or search for any real transit stop. Lock your phone,
+              fall asleep, and R&middot;iving watches your GPS to wake you up at exactly the
+              right moment. Built end-to-end from the icon to the ad banner: background
+              geofencing, Apple Maps integration, OpenStreetMap transit data.
+            </p>
+            <ul class="panel-stack" aria-label="Stack">
+              <li>React Native</li>
+              <li>TypeScript</li>
+              <li>Expo SDK 55</li>
+              <li>Geofencing</li>
+              <li>Apple Maps</li>
+              <li>OpenStreetMap</li>
+            </ul>
+            <a class="rbtn rbtn--solid" href="./justahead/">Visit site &#8599;</a>
           </div>
-          <p class="edu-degree">Bachelor of Science · Computer Engineering &amp; Computer Science</p>
-          <p class="edu-meta">2nd year</p>
-          <p class="edu-activities">
-            <strong>Activities:</strong> Embedded Design @ Northeastern Electric Racing Club
-          </p>
+          <div class="panel-visual">
+            <div class="panel-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img src="./justahead/assets/icon.png" alt="R&middot;iving app icon" class="panel-icon">
+          </div>
         </div>
+        <span class="anno panel-corner" aria-hidden="true">Sheet 1 / 2</span>
       </article>
+
+      <!-- Panel 2: TrashScan -->
+      <article class="work-panel panel-trash">
+        <div class="panel-bg blueprint" aria-hidden="true"></div>
+        <div class="panel-inner">
+          <div class="panel-text">
+            <div class="panel-meta">
+              <span class="anno" style="color: var(--signal);">Work 02.2</span>
+              <span class="anno"><b>Embedded &middot; Arduino &middot; 2025</b></span>
+              <span class="anno">First-year project</span>
+            </div>
+            <h3 class="panel-title">Trash<span class="dot">&middot;</span>Scan</h3>
+            <p class="panel-tagline">Smart metal detection for restaurant waste.</p>
+            <p class="panel-desc">
+              Prototype smart trash can that detects, retrieves, and sanitizes metal
+              utensils mistakenly thrown away in restaurants. Arduino firmware, a copper
+              induction loop, a block-and-tackle pulley, and a custom 3D-printed
+              enclosure. Full case study with photos and the design report.
+            </p>
+            <ul class="panel-stack" aria-label="Stack">
+              <li>Arduino</li>
+              <li>C / C++</li>
+              <li>Induction sensing</li>
+              <li>Stepper motor</li>
+              <li>UV sanitization</li>
+              <li>3D printing</li>
+            </ul>
+            <a class="rbtn" href="./trashscan/">View case study &#8599;</a>
+          </div>
+          <div class="panel-visual">
+            <div class="panel-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="panel-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 6h18"/>
+                <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                <line x1="10" y1="11" x2="10" y2="17"/>
+                <line x1="14" y1="11" x2="14" y2="17"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <span class="anno panel-corner" aria-hidden="true">Sheet 2 / 2</span>
+      </article>
+
     </div>
   </section>
 
-  <!-- Certifications -->
-  <section class="section section-dark" data-index="04">
-    <div class="container container-narrow">
-      <div class="section-head reveal">
-        <span class="eyebrow">Licenses &amp; certifications</span>
-        <h2>Always learning.</h2>
-        <p>Credentials and specialized training I've completed.</p>
+  <!-- ── 03 INDEX: project ledger ─────────────────────── -->
+  <section id="index" class="sheet">
+    <span class="ghost-no" aria-hidden="true">03</span>
+    <div class="wrap">
+      <div class="sheet-head">
+        <span class="sheet-no">03</span>
+        <span class="sheet-name">Project index</span>
+        <span class="sheet-rule" aria-hidden="true"></span>
+        <span class="sheet-fig">Fig. C / All entries</span>
       </div>
 
-      <div class="cert-list reveal">
-        <article class="cert-card">
-          <div class="cert-logo">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 6v6l4 2"/>
-              <rect x="9" y="2" width="6" height="4" rx="1"/>
-            </svg>
-          </div>
-          <div class="cert-body">
-            <div class="cert-head">
-              <h3>Pre-Engineering Industry Certification</h3>
-              <span class="cert-date">Jun 2023</span>
-            </div>
-            <p class="cert-issuer">Robotics Education &amp; Competition Foundation</p>
-            <div class="cert-skills">
-              <span class="cert-skills-label">Skills</span>
-              <div class="cert-skill-dots">
-                <span>Mechanical Engineering</span>
-                <span>Electrical Engineering</span>
-              </div>
-            </div>
-            <div class="cert-meta">
-              <span class="cert-id">Credential ID 33AUD9GZYC</span>
-              <a href="assets/recf-pre-engineering.pdf" target="_blank" rel="noopener" class="cert-link">
-                View credential
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-            </div>
-          </div>
+      <div class="ledger">
+        <a class="ledger-row" href="./justahead/">
+          <span class="lr-no">001</span>
+          <span class="lr-name">R&middot;iving</span>
+          <span class="lr-meta">iOS &middot; Geofencing &middot; App Store</span>
+          <span class="lr-year">2026</span>
+          <span class="lr-arrow" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+          </span>
+        </a>
+        <a class="ledger-row" href="./trashscan/">
+          <span class="lr-no">002</span>
+          <span class="lr-name">TrashScan</span>
+          <span class="lr-meta">Embedded &middot; Arduino &middot; Hardware</span>
+          <span class="lr-year">2025</span>
+          <span class="lr-arrow" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+          </span>
+        </a>
+        <a class="ledger-row" href="https://electricracing.northeastern.edu/" target="_blank" rel="noopener">
+          <span class="lr-no">003</span>
+          <span class="lr-name">NER Launchpad</span>
+          <span class="lr-meta">Embedded C &middot; ARM Cortex &middot; Firmware</span>
+          <span class="lr-year">2026</span>
+          <span class="lr-arrow" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+          </span>
+        </a>
+        <a class="ledger-row" href="https://github.com/qwarkstar" target="_blank" rel="noopener">
+          <span class="lr-no">004</span>
+          <span class="lr-name">GitHub</span>
+          <span class="lr-meta">Experiments &middot; Prototypes &middot; WIP</span>
+          <span class="lr-year">&infin;</span>
+          <span class="lr-arrow" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 04 RECORD: education + certifications ────────── -->
+  <section id="record" class="sheet">
+    <span class="ghost-no" aria-hidden="true">04</span>
+    <div class="wrap">
+      <div class="sheet-head">
+        <span class="sheet-no">04</span>
+        <span class="sheet-name">Record</span>
+        <span class="sheet-rule" aria-hidden="true"></span>
+        <span class="sheet-fig">Fig. D / Education + credentials</span>
+      </div>
+
+      <div class="record-list">
+        <article class="record-row">
+          <span class="rr-when">2025 &ndash; 2028</span>
+          <h3 class="rr-what">Northeastern University</h3>
+          <p class="rr-detail">
+            Bachelor of Science, Computer Engineering &amp; Computer Science. 2nd year.
+            <span class="anno"><b>Activities</b> &middot; Embedded Design @ Northeastern Electric Racing</span>
+          </p>
+          <span class="rr-link anno">Boston, MA</span>
         </article>
 
-        <article class="cert-card">
-          <div class="cert-logo">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="11" width="18" height="10" rx="2"/>
-              <circle cx="12" cy="5" r="2"/>
-              <path d="M12 7v4"/>
-              <line x1="8" y1="16" x2="8" y2="16"/>
-              <line x1="16" y1="16" x2="16" y2="16"/>
-            </svg>
-          </div>
-          <div class="cert-body">
-            <div class="cert-head">
-              <h3>Robotics Industry Certification</h3>
-              <span class="cert-date">Jun 2023</span>
-            </div>
-            <p class="cert-issuer">Robotics Education &amp; Competition Foundation</p>
-            <div class="cert-skills">
-              <span class="cert-skills-label">Skills</span>
-              <div class="cert-skill-dots">
-                <span>Electrical Engineering</span>
-                <span>Computer Engineering</span>
-                <span>Mechanical Engineering</span>
-              </div>
-            </div>
-            <div class="cert-meta">
-              <span class="cert-id">Credential ID 33AUD9GZYC</span>
-              <a href="assets/recf-robotics.pdf" target="_blank" rel="noopener" class="cert-link">
-                View credential
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-            </div>
-          </div>
+        <article class="record-row">
+          <span class="rr-when">Jun 2023</span>
+          <h3 class="rr-what">Pre-Engineering Industry Certification</h3>
+          <p class="rr-detail">
+            Robotics Education &amp; Competition Foundation. Mechanical and electrical engineering.
+            <span class="anno"><b>Credential</b> &middot; 33AUD9GZYC</span>
+          </p>
+          <a class="rr-link u-link" href="assets/recf-pre-engineering.pdf" target="_blank" rel="noopener">View <span class="arr">&#8599;</span></a>
+        </article>
+
+        <article class="record-row">
+          <span class="rr-when">Jun 2023</span>
+          <h3 class="rr-what">Robotics Industry Certification</h3>
+          <p class="rr-detail">
+            Robotics Education &amp; Competition Foundation. Electrical, computer, and mechanical engineering.
+            <span class="anno"><b>Credential</b> &middot; 33AUD9GZYC</span>
+          </p>
+          <a class="rr-link u-link" href="assets/recf-robotics.pdf" target="_blank" rel="noopener">View <span class="arr">&#8599;</span></a>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="section" data-index="05">
-    <div class="container container-narrow">
-      <div class="contact-card reveal">
-        <div class="contact-mark" aria-hidden="true">
-          <span></span><span></span><span></span><span></span>
-        </div>
-        <h2>Let's build something.</h2>
-        <p>I'm always open to new projects, collaborations, and conversations about embedded systems or iOS development.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary btn-large" href="mailto:julian.rzezak@gmail.com">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            julian.rzezak@gmail.com
-          </a>
-        </div>
-        <div class="contact-socials">
-          <a href="https://github.com/qwarkstar" target="_blank" rel="noopener">GitHub</a>
-          <span class="dot">·</span>
-          <a href="https://www.linkedin.com/in/julian-rzezak-07508029b" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Giant signature band — outline type, scrubbed by scroll -->
+  <!-- ── Signature band ───────────────────────────────── -->
   <div class="name-marquee" aria-hidden="true">
     <div class="name-track">
-      <span>Julian Rzezak</span><em>·</em><span class="name-fill">Julian Rzezak</span><em>·</em><span>Julian Rzezak</span><em>·</em><span class="name-fill">Julian Rzezak</span><em>·</em>
+      <span>Julian Rzezak</span><em>&middot;</em><span class="name-fill">Julian Rzezak</span><em>&middot;</em><span>Julian Rzezak</span><em>&middot;</em><span class="name-fill">Julian Rzezak</span><em>&middot;</em>
     </div>
   </div>
+
+  <!-- ── 05 CONTACT: drenched finale ──────────────────── -->
+  <section id="contact" class="contact">
+    <div class="blueprint-layer" aria-hidden="true"></div>
+    <div class="contact-inner wrap">
+      <div>
+        <div class="contact-head">
+          <span class="anno">05 / Contact</span>
+          <span class="rule" aria-hidden="true"></span>
+          <span class="anno">Fig. E / Open channel</span>
+        </div>
+        <h2 class="contact-title">
+          Let's build<br><span class="ghost">something.</span>
+        </h2>
+        <a class="contact-mail" href="mailto:julian.rzezak@gmail.com">
+          julian.rzezak@gmail.com <span class="arr" aria-hidden="true">&#8599;</span>
+        </a>
+        <div class="contact-socials">
+          <a href="https://github.com/qwarkstar" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/julian-rzezak-07508029b" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="./justahead/">R&middot;iving</a>
+        </div>
+      </div>
+
+      <footer class="site-foot">
+        <span class="anno">&copy; 2026 Julian Rzezak &middot; All rights reserved</span>
+        <span class="anno">Made with care in Miami</span>
+        <button class="to-top" id="toTop" type="button">Back to top &#8593;</button>
+      </footer>
+    </div>
+  </section>
 
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="footer-brand-inner">
-            <span class="brand-monogram">JR</span>
-            <span>Julian Rzezak</span>
-          </div>
-          <p>CS/CE student at Northeastern. Building thoughtful software.</p>
-        </div>
-        <div class="footer-col">
-          <h3>Sections</h3>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#education">Education</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <div class="footer-col">
-          <h3>Links</h3>
-          <a href="https://github.com/qwarkstar" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://www.linkedin.com/in/julian-rzezak-07508029b" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="./justahead/">R·iving</a>
-          <a href="mailto:julian.rzezak@gmail.com">Email</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 Julian Rzezak · All rights reserved</p>
-        <p class="footer-made">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-          Made with care in Miami
-        </p>
-      </div>
-    </div>
-  </footer>
+  </div><!-- /#smooth-content -->
+  </div><!-- /#smooth-wrapper -->
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" integrity="sha384-P8VzCVnT9NBUkMrpcIZrJbA7EBjJvh/fJS6PmP+4nLIM284DtsImIv8D0fFjIkeh" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js" integrity="sha384-dd8lT3AimXbI347qlZzlijPa4qnSlgGxuTqK2HlcfvF5+aOIeddPdMFmFpypQPZN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" integrity="sha384-xb96EMJeax+NLXMC88ZBa1xAeAW+kn+horHh/zFlbMLG2UPWhMJJSlv7fi57hS+Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js" integrity="sha384-QsPhgdP78a1erQNT34dj/oyh7uPCXUnT/FkptUa/56LnSGsbTBmdiAOfB7j+8K4A" crossorigin="anonymous"></script>
   <script src="app.js"></script>
 </body>
 </html>
