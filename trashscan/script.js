@@ -182,6 +182,10 @@
     document.documentElement.classList.add('gsap-init');
     gsap.registerPlugin(ScrollTrigger);
     if (typeof SplitText !== 'undefined') gsap.registerPlugin(SplitText);
+    if (typeof ScrambleTextPlugin !== 'undefined') gsap.registerPlugin(ScrambleTextPlugin);
+
+    // Run motion setup once webfonts are in, so SplitText measures real glyphs
+    const initMotion = () => {
 
     // Hero entrance
     const heroEls = ['.hero-title', '.badge', '.hero-sub', '.hero-cta', '.hero-stats', '.hero-diagram'];
@@ -198,10 +202,10 @@
         heroTitle.style.perspective = '800px';
         const split = new SplitText(heroTitle, { type: 'words', mask: 'words', wordsClass: 'hero-word' });
         gsap.set(heroTitle, { autoAlpha: 1 });
-        gsap.set(split.words, { yPercent: 110, rotateX: -80, transformOrigin: '50% 100% -20px' });
+        gsap.set(split.words, { yPercent: 110, rotationX: -80, transformOrigin: '50% 100% -20px' });
         tl.to(split.words, {
           yPercent: 0,
-          rotateX: 0,
+          rotationX: 0,
           duration: 1.1,
           ease: 'power3.out',
           stagger: 0.07
@@ -221,14 +225,14 @@
         }
       });
 
-      // Diagram card flips into view from -45° rotateY with elastic
+      // Diagram card flips into view from -45° rotationY with elastic
       const heroDiagram = document.querySelector('.hero-diagram');
       if (heroDiagram) {
         heroDiagram.style.perspective = '1200px';
-        gsap.set(heroDiagram, { autoAlpha: 0, rotateY: -55, scale: 0.85, transformOrigin: '50% 50%' });
+        gsap.set(heroDiagram, { autoAlpha: 0, rotationY: -55, scale: 0.85, transformOrigin: '50% 50%' });
         tl.to(heroDiagram, {
           autoAlpha: 1,
-          rotateY: 0,
+          rotationY: 0,
           scale: 1,
           duration: 1.4,
           ease: 'elastic.out(1, 0.6)'
@@ -348,8 +352,8 @@
     mm.add('(hover: hover) and (pointer: fine)', () => {
       const tiltCards = document.querySelectorAll('.overview-block, .pipe-step, .tech, .challenge, .member, .firmware-code, .report-cta');
       tiltCards.forEach(card => {
-        const setRX = gsap.quickTo(card, 'rotateX', { duration: 0.5, ease: 'power2.out' });
-        const setRY = gsap.quickTo(card, 'rotateY', { duration: 0.5, ease: 'power2.out' });
+        const setRX = gsap.quickTo(card, 'rotationX', { duration: 0.5, ease: 'power2.out' });
+        const setRY = gsap.quickTo(card, 'rotationY', { duration: 0.5, ease: 'power2.out' });
         card.style.transformPerspective = '1100px';
         card.style.transformStyle = 'preserve-3d';
         card.addEventListener('mouseenter', () => {
@@ -363,7 +367,7 @@
           setRX(-y * 5);
         });
         card.addEventListener('mouseleave', () => {
-          gsap.to(card, { rotateX: 0, rotateY: 0, z: 0, duration: 0.7, ease: 'power3.out' });
+          gsap.to(card, { rotationX: 0, rotationY: 0, z: 0, duration: 0.7, ease: 'power3.out' });
         });
       });
     });
@@ -458,6 +462,89 @@
           );
         }
       });
+    }
+
+    // Pipeline scanner — a detection dot rides the track while steps light up
+    const pipeTrack = document.querySelector('.pipeline-line-track');
+    const pipeSteps = gsap.utils.toArray('.pipeline-line .pipe-step');
+    if (pipeTrack && pipeSteps.length) {
+      const scanDot = document.createElement('span');
+      scanDot.className = 'pipe-scan-dot';
+      pipeTrack.appendChild(scanDot);
+      const scanTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.pipeline',
+          start: 'top 78%',
+          end: 'bottom 40%',
+          scrub: 1
+        }
+      });
+      scanTl.fromTo(scanDot,
+        { left: '0%' },
+        { left: '100%', ease: 'none', duration: pipeSteps.length },
+        0
+      );
+      pipeSteps.forEach((step, i) => {
+        const glow = document.createElement('span');
+        glow.className = 'pipe-step-glow';
+        step.appendChild(glow);
+        scanTl
+          .to(glow, { opacity: 1, duration: 0.3, ease: 'none' }, i + 0.25)
+          .to(glow, { opacity: 0, duration: 0.35, ease: 'none' }, i + 0.78);
+      });
+    }
+
+    // Code filename scrambles in like a terminal prompt
+    if (typeof ScrambleTextPlugin !== 'undefined') {
+      const codeTitle = document.querySelector('.code-title');
+      if (codeTitle) {
+        const fileName = codeTitle.textContent;
+        ScrollTrigger.create({
+          trigger: '.firmware-code',
+          start: 'top 80%',
+          once: true,
+          onEnter: () => gsap.to(codeTitle, {
+            scrambleText: { text: fileName, chars: '01{}<>/;', speed: 0.4 },
+            duration: 1.2,
+            ease: 'none'
+          })
+        });
+      }
+    }
+
+    // Detection pulse flows through the hero diagram, node by node
+    const diagNodes = gsap.utils.toArray('.hero-diagram .diagram-node');
+    const diagArrows = gsap.utils.toArray('.hero-diagram .diagram-arrow');
+    if (diagNodes.length) {
+      const flowTl = gsap.timeline({ repeat: -1, repeatDelay: 1.6, paused: true, delay: 2.8 });
+      diagNodes.forEach((node, i) => {
+        const icon = node.querySelector('.diagram-icon');
+        if (!icon) return;
+        flowTl
+          .to(icon, { scale: 1.16, duration: 0.22, ease: 'power2.out' }, i * 0.55)
+          .to(icon, { scale: 1, duration: 0.4, ease: 'power2.inOut' }, i * 0.55 + 0.22);
+        if (diagArrows[i]) {
+          flowTl
+            .fromTo(diagArrows[i],
+              { y: -3, opacity: 0.45 },
+              { y: 3, opacity: 1, duration: 0.28, ease: 'power1.in', immediateRender: false },
+              i * 0.55 + 0.26)
+            .to(diagArrows[i], { y: 0, opacity: 0.8, duration: 0.22 }, i * 0.55 + 0.54);
+        }
+      });
+      ScrollTrigger.create({
+        trigger: '.hero-diagram',
+        start: 'top bottom',
+        end: 'bottom top',
+        onToggle: (self) => (self.isActive ? flowTl.play() : flowTl.pause())
+      });
+    }
+
+    };
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(initMotion);
+    } else {
+      initMotion();
     }
   }
 })();

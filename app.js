@@ -234,6 +234,10 @@
     document.documentElement.classList.add('gsap-init');
     gsap.registerPlugin(ScrollTrigger);
     if (typeof SplitText !== 'undefined') gsap.registerPlugin(SplitText);
+    if (typeof ScrambleTextPlugin !== 'undefined') gsap.registerPlugin(ScrambleTextPlugin);
+
+    // Run motion setup once webfonts are in, so SplitText measures real glyphs
+    const initMotion = () => {
 
     // Hero entrance choreography
     const heroEls = ['.hero-title', '.badge', '.hero-sub', '.hero-cta', '.social-row', '.hero-stats', '.phone-wrap', '.hero-diagram'];
@@ -245,19 +249,19 @@
       const tl = gsap.timeline({ delay: 0.15, defaults: { ease: 'power3.out', duration: 0.9 } });
       tl.to('.badge', { autoAlpha: 1, y: 0, duration: 0.6 });
 
-      // Hero title: SplitText 3D card-flip word reveal
+      // Hero title: SplitText 3D card-flip reveal, one character at a time
       const heroTitle = document.querySelector('.hero-title');
       if (heroTitle && typeof SplitText !== 'undefined') {
         heroTitle.style.perspective = '800px';
-        const split = new SplitText(heroTitle, { type: 'words', mask: 'words', wordsClass: 'hero-word' });
+        const split = new SplitText(heroTitle, { type: 'chars,words', mask: 'words', wordsClass: 'hero-word' });
         gsap.set(heroTitle, { autoAlpha: 1 });
-        gsap.set(split.words, { yPercent: 110, rotateX: -80, transformOrigin: '50% 100% -20px' });
-        tl.to(split.words, {
+        gsap.set(split.chars, { yPercent: 120, rotationX: -80, transformOrigin: '50% 100% -20px' });
+        tl.to(split.chars, {
           yPercent: 0,
-          rotateX: 0,
+          rotationX: 0,
           duration: 1.1,
           ease: 'power3.out',
-          stagger: 0.07
+          stagger: 0.025
         }, '-=0.35');
       } else if (heroTitle) {
         tl.to('.hero-title', { autoAlpha: 1, y: 0, duration: 0.9 }, '-=0.35');
@@ -397,8 +401,8 @@
     mm.add('(hover: hover) and (pointer: fine)', () => {
       const tiltCards = document.querySelectorAll('.featured-card, .project-card, .edu-card, .cert-card');
       tiltCards.forEach(card => {
-        const setRX = gsap.quickTo(card, 'rotateX', { duration: 0.5, ease: 'power2.out' });
-        const setRY = gsap.quickTo(card, 'rotateY', { duration: 0.5, ease: 'power2.out' });
+        const setRX = gsap.quickTo(card, 'rotationX', { duration: 0.5, ease: 'power2.out' });
+        const setRY = gsap.quickTo(card, 'rotationY', { duration: 0.5, ease: 'power2.out' });
         card.style.transformPerspective = '1100px';
         card.style.transformStyle = 'preserve-3d';
         card.addEventListener('mouseenter', () => {
@@ -412,7 +416,7 @@
           setRX(-y * 5);
         });
         card.addEventListener('mouseleave', () => {
-          gsap.to(card, { rotateX: 0, rotateY: 0, z: 0, duration: 0.7, ease: 'power3.out' });
+          gsap.to(card, { rotationX: 0, rotationY: 0, z: 0, duration: 0.7, ease: 'power3.out' });
         });
       });
     });
@@ -508,6 +512,62 @@
           }, 150);
         }
       });
+    }
+
+    // Scramble-in the hero coordinate rail
+    if (typeof ScrambleTextPlugin !== 'undefined') {
+      document.querySelectorAll('.hero-meta-line').forEach((line, i) => {
+        gsap.to(line, {
+          scrambleText: { text: line.textContent, chars: '01<>/·', speed: 0.5 },
+          duration: 1.1,
+          delay: 0.5 + i * 0.18,
+          ease: 'none'
+        });
+      });
+    }
+
+    // Giant signature band scrubs sideways with scroll
+    const nameTrack = document.querySelector('.name-track');
+    if (nameTrack) {
+      gsap.fromTo(nameTrack, { xPercent: 0 }, {
+        xPercent: -14,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.name-marquee',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        }
+      });
+    }
+
+    // Scroll-velocity skew — cards lean into fast scrolling
+    const skewTargets = gsap.utils.toArray('.featured-card, .project-card, .edu-card, .cert-card');
+    if (skewTargets.length) {
+      const proxy = { skew: 0 };
+      const skewSetter = gsap.quickSetter(skewTargets, 'skewY', 'deg');
+      const clampSkew = gsap.utils.clamp(-1.4, 1.4);
+      ScrollTrigger.create({
+        onUpdate: (self) => {
+          const skew = clampSkew(self.getVelocity() / -500);
+          if (Math.abs(skew) > Math.abs(proxy.skew)) {
+            proxy.skew = skew;
+            gsap.to(proxy, {
+              skew: 0,
+              duration: 0.9,
+              ease: 'power3',
+              overwrite: true,
+              onUpdate: () => skewSetter(proxy.skew)
+            });
+          }
+        }
+      });
+    }
+    };
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(initMotion);
+    } else {
+      initMotion();
     }
   }
 })();

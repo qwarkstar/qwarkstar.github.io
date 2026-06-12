@@ -2380,3 +2380,85 @@ button:focus-visible,
   .feature-pair { grid-template-columns: 1fr; gap: 14px; }
   .feature-callout { padding: 28px 24px; }
 }
+
+/* ════════════════════════════════════════════════════
+   v4 DESIGN — texture, cursor, live alarm demo
+═════════════════════════════════════════════════════ */
+
+/* ── Film grain overlay ────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 150;
+}
+
+/* ── Mock alarm overlay (driven by the GSAP demo loop) ── */
+.mock-alarm {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 16px;
+  z-index: 3;
+  padding: 22px 18px 18px;
+  border-radius: 22px;
+  background: rgba(13, 19, 36, 0.92);
+  border: 1px solid rgba(79, 147, 255, 0.35);
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.6),
+    0 0 36px rgba(79, 147, 255, 0.25);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.mock-alarm-bell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  background: rgba(79, 147, 255, 0.14);
+  border: 1px solid rgba(79, 147, 255, 0.4);
+  color: var(--accent-soft);
+  box-shadow: 0 0 24px rgba(79, 147, 255, 0.35);
+}
+
+.mock-alarm-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.mock-alarm-stop {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--success);
+  margin-bottom: 14px;
+}
+
+.mock-alarm-dismiss {
+  display: inline-block;
+  padding: 9px 26px;
+  border-radius: 99px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(79, 147, 255, 0.35);
+}

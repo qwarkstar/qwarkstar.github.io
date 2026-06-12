@@ -241,6 +241,10 @@
     document.documentElement.classList.add('gsap-init');
     gsap.registerPlugin(ScrollTrigger);
     if (typeof SplitText !== 'undefined') gsap.registerPlugin(SplitText);
+    if (typeof ScrambleTextPlugin !== 'undefined') gsap.registerPlugin(ScrambleTextPlugin);
+
+    // Run motion setup once webfonts are in, so SplitText measures real glyphs
+    const initMotion = () => {
 
     // Hero entrance
     const heroEls = ['.hero-title', '.badge', '.hero-sub', '.hero-cta', '.hero-stats', '.phone-wrap'];
@@ -257,10 +261,10 @@
         heroTitle.style.perspective = '800px';
         const split = new SplitText(heroTitle, { type: 'words', mask: 'words', wordsClass: 'hero-word' });
         gsap.set(heroTitle, { autoAlpha: 1 });
-        gsap.set(split.words, { yPercent: 110, rotateX: -80, transformOrigin: '50% 100% -20px' });
+        gsap.set(split.words, { yPercent: 110, rotationX: -80, transformOrigin: '50% 100% -20px' });
         tl.to(split.words, {
           yPercent: 0,
-          rotateX: 0,
+          rotationX: 0,
           duration: 1.1,
           ease: 'power3.out',
           stagger: 0.07
@@ -280,14 +284,14 @@
         }
       });
 
-      // Phone mockup spins into view: rotateY -120 → 0 with scale + elastic ease
+      // Phone mockup spins into view: rotationY -120 → 0 with scale + elastic ease
       const phoneWrap = document.querySelector('.phone-wrap');
       if (phoneWrap) {
         phoneWrap.style.perspective = '1200px';
-        gsap.set(phoneWrap, { autoAlpha: 0, rotateY: -120, scale: 0.7, transformOrigin: '50% 50%' });
+        gsap.set(phoneWrap, { autoAlpha: 0, rotationY: -120, scale: 0.7, transformOrigin: '50% 50%' });
         tl.to(phoneWrap, {
           autoAlpha: 1,
-          rotateY: 0,
+          rotationY: 0,
           scale: 1,
           duration: 1.6,
           ease: 'elastic.out(1, 0.55)'
@@ -409,11 +413,13 @@
       });
     }
 
-    // Phone mockup parallax — drifts upward as you scroll past the hero
+    // Phone mockup parallax — drifts up and leans back as you scroll past the hero
     const phoneWrap = document.querySelector('.phone-wrap');
     if (phoneWrap) {
       gsap.to(phoneWrap, {
         y: -120,
+        rotation: 4,
+        scale: 0.96,
         ease: 'none',
         scrollTrigger: {
           trigger: '.hero',
@@ -428,8 +434,8 @@
     mm.add('(hover: hover) and (pointer: fine)', () => {
       const tiltCards = document.querySelectorAll('.step, .feature, .audience, .faq-item');
       tiltCards.forEach(card => {
-        const setRX = gsap.quickTo(card, 'rotateX', { duration: 0.5, ease: 'power2.out' });
-        const setRY = gsap.quickTo(card, 'rotateY', { duration: 0.5, ease: 'power2.out' });
+        const setRX = gsap.quickTo(card, 'rotationX', { duration: 0.5, ease: 'power2.out' });
+        const setRY = gsap.quickTo(card, 'rotationY', { duration: 0.5, ease: 'power2.out' });
         card.style.transformPerspective = '1100px';
         card.style.transformStyle = 'preserve-3d';
         card.addEventListener('mouseenter', () => {
@@ -443,7 +449,7 @@
           setRX(-y * 5);
         });
         card.addEventListener('mouseleave', () => {
-          gsap.to(card, { rotateX: 0, rotateY: 0, z: 0, duration: 0.7, ease: 'power3.out' });
+          gsap.to(card, { rotationX: 0, rotationY: 0, z: 0, duration: 0.7, ease: 'power3.out' });
         });
       });
     });
@@ -466,6 +472,12 @@
       howSteps.forEach((step, i) => {
         stepsTl.to(step, { autoAlpha: 1, scale: 1, duration: 1, ease: 'power2.out' }, i);
       });
+      // The track between the stations draws itself as the steps activate
+      const stepsTrack = howSection.querySelector('.steps-line-track');
+      if (stepsTrack) {
+        gsap.set(stepsTrack, { scaleX: 0, transformOrigin: '0% 50%' });
+        stepsTl.to(stepsTrack, { scaleX: 1, duration: howSteps.length, ease: 'none' }, 0);
+      }
     }
 
     // Magnetic nav links
@@ -555,6 +567,53 @@
           }, 150);
         }
       });
+    }
+
+    // Live demo — the mock phone counts down, then the alarm fires on screen
+    const mockDist = document.querySelector('.mock-card-active .mock-dist');
+    const mockAlarm = document.querySelector('.mock-alarm');
+    if (mockDist && mockAlarm) {
+      const distState = { km: 1.4 };
+      const renderDist = () => {
+        mockDist.textContent = distState.km <= 0.15
+          ? 'Arriving now'
+          : distState.km.toFixed(1) + ' km away';
+      };
+      gsap.set(mockAlarm, { y: 36 });
+      const demoTl = gsap.timeline({ repeat: -1, repeatDelay: 2.4, paused: true });
+      demoTl
+        .to(distState, { km: 0.1, duration: 3.4, ease: 'power1.in', onUpdate: renderDist })
+        .to(mockAlarm, { autoAlpha: 1, y: 0, duration: 0.55, ease: 'back.out(1.7)' })
+        .to('.radar-pin', {
+          scale: 1.7,
+          duration: 0.16,
+          repeat: 7,
+          yoyo: true,
+          ease: 'power1.inOut'
+        }, '<')
+        .fromTo('.mock-alarm-bell', { rotation: -12 }, {
+          rotation: 12,
+          duration: 0.11,
+          repeat: 11,
+          yoyo: true,
+          ease: 'power1.inOut',
+          immediateRender: false
+        }, '<')
+        .to('.mock-alarm-bell', { rotation: 0, duration: 0.2 })
+        .to(mockAlarm, { autoAlpha: 0, y: 30, duration: 0.4, ease: 'power2.in' }, '+=1.5');
+      ScrollTrigger.create({
+        trigger: '.phone-wrap',
+        start: 'top bottom',
+        end: 'bottom top',
+        onToggle: (self) => (self.isActive ? demoTl.play() : demoTl.pause())
+      });
+    }
+
+    };
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(initMotion);
+    } else {
+      initMotion();
     }
   }
 })();
